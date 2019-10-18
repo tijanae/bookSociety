@@ -35,7 +35,7 @@
 		4E0C342D235A589400B19CC8 /* CategoryBestseller.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E0C342C235A589400B19CC8 /* CategoryBestseller.json */; };
 		4E0C342F235A58AC00B19CC8 /* BookInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E0C342E235A58AC00B19CC8 /* BookInfo.json */; };
 		4E0C3431235A599000B19CC8 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0C3430235A599000B19CC8 /* Protocols.swift */; };
-		4E0C3434235A5CCB00B19CC8 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0C3433235A5CCB00B19CC8 /* Secrets.swift */; };
+		FC304869235A619E002A343E /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC304868235A619E002A343E /* Secrets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +81,7 @@
 		4E0C342C235A589400B19CC8 /* CategoryBestseller.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CategoryBestseller.json; sourceTree = "<group>"; };
 		4E0C342E235A58AC00B19CC8 /* BookInfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BookInfo.json; sourceTree = "<group>"; };
 		4E0C3430235A599000B19CC8 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		4E0C3433235A5CCB00B19CC8 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		FC304868235A619E002A343E /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = ../../Secrets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +128,7 @@
 				4E0C340F235A556D00B19CC8 /* Models */,
 				4E0C3410235A563A00B19CC8 /* NetworkHelpers */,
 				4E0C341D235A573F00B19CC8 /* Persistence */,
-				4E0C3432235A5CBA00B19CC8 /* Secrets */,
+				FC30486A235A61AF002A343E /* Secrets */,
 				4E0C3435235A5CFA00B19CC8 /* SupportingFiles */,
 				4E0C33E6235A52B600B19CC8 /* Info.plist */,
 			);
@@ -202,14 +202,6 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
-		4E0C3432235A5CBA00B19CC8 /* Secrets */ = {
-			isa = PBXGroup;
-			children = (
-				4E0C3433235A5CCB00B19CC8 /* Secrets.swift */,
-			);
-			path = Secrets;
-			sourceTree = "<group>";
-		};
 		4E0C3435235A5CFA00B19CC8 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +211,14 @@
 				4E0C33E3235A52B600B19CC8 /* LaunchScreen.storyboard */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		FC30486A235A61AF002A343E /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				FC304868235A619E002A343E /* Secrets.swift */,
+			);
+			path = Secrets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,7 +344,7 @@
 				4E0C340E235A556600B19CC8 /* BookCategory.swift in Sources */,
 				4E0C3400235A53F300B19CC8 /* SettingsVC.swift in Sources */,
 				4E0C3425235A580C00B19CC8 /* FavoritesModel.swift in Sources */,
-				4E0C3434235A5CCB00B19CC8 /* Secrets.swift in Sources */,
+				FC304869235A619E002A343E /* Secrets.swift in Sources */,
 				4E0C3427235A581F00B19CC8 /* BookPersistenceManager.swift in Sources */,
 				4E0C341C235A572A00B19CC8 /* ImageHelper.swift in Sources */,
 			);
@@ -500,6 +500,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SocietyLibrary/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -517,6 +518,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SocietyLibrary/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
