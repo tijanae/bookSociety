@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+struct CategoryBestSeller: Codable {
+    
+    static func getBestSellers(from jsonData: Data) -> [CategoryBestSeller]? {
+        
+        return [CategoryBestSeller]()
+    }
+}
