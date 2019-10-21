@@ -8,3 +8,10 @@
 
 import Foundation
 
+struct FavoriteBooks: Codable {
+    let imageName: String
+    let imageData: Data
+    let summary: String
+    let amazonURL: String
+    let weeksOn: Int
+}
