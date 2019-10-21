@@ -9,11 +9,31 @@
 import Foundation
 
 
-struct BookCategory: Codable {
+struct BookCategoryWrapper: Codable {
+
+
+
     
-    static func getCategory(from jsonData: Data) -> [BookCategory]? {
+    let results: [Category]
+    
+    
+    static func getCategory(from jsonData: Data) throws -> [Category]? {
         
-        return [BookCategory]()
+        let response = try JSONDecoder().decode(BookCategoryWrapper.self, from: jsonData)
+        
+        return response.results
     }
+    
+//    static func getWeather(from jsonData: Data) throws -> [DailyDatum]? {
+//        let response = try JSONDecoder().decode(Weather.self, from: jsonData)
+//        return response.daily.data
+//
+//    }
+}
+
+struct Category: Codable {
+    
+    let list_name: String
+    let display_name: String
 }
 
