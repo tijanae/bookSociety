@@ -8,7 +8,11 @@
 
 import Foundation
 
+
 struct BookCategoryWrapper: Codable {
+
+
+
     
     let results: [Category]
     
@@ -32,3 +36,4 @@ struct Category: Codable {
     let list_name: String
     let display_name: String
 }
+
