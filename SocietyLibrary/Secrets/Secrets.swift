@@ -1,5 +1,5 @@
 //
-//  FavoritesModel.swift
+//  Secrets.swift
 //  SocietyLibrary
 //
 //  Created by Tia Lendor on 10/18/19.

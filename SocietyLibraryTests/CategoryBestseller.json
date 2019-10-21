@@ -1,1 +1,692 @@
-
+{
+    "status": "OK",
+    "copyright": "Copyright (c) 2019 The New York Times Company.  All Rights Reserved.",
+    "num_results": 15,
+    "last_modified": "2019-10-17T16:01:03-04:00",
+    "results": [
+        {
+            "list_name": "Hardcover Fiction",
+            "display_name": "Hardcover Fiction",
+            "bestsellers_date": "2019-10-12",
+            "published_date": "2019-10-27",
+            "rank": 1,
+            "rank_last_week": 0,
+            "weeks_on_list": 1,
+            "asterisk": 0,
+            "dagger": 0,
+            "amazon_product_url": "https://www.amazon.com/19th-Christmas-Womens-Murder-Club-ebook/dp/B07P1SSF9S?tag=NYTBS-20",
+            "isbns": [
+                {
+                    "isbn10": "0316420271",
+                    "isbn13": "9780316420273"
+                },
+                {
+                    "isbn10": "031649402X",
+                    "isbn13": "9780316494021"
+                }
+            ],
+            "book_details": [
+                {
+                    "title": "THE 19TH CHRISTMAS",
+                    "description": "In the 19th installment of the Women's Murder Club series, detective Lindsay Boxer and company take on a fearsome criminal known only as \"Loman.\"",
+                    "contributor": "by James Patterson and Maxine Paetro",
+                    "author": "James Patterson and Maxine Paetro",
+                    "contributor_note": "",
+                    "price": 0,
+                    "age_group": "",
+                    "publisher": "Little, Brown",
+                    "primary_isbn13": "9780316420273",
+                    "primary_isbn10": "0316420271"
+                }
+            ],
+            "reviews": [
+                {
+                    "book_review_link": "",
+                    "first_chapter_link": "",
+                    "sunday_review_link": "",
+                    "article_chapter_link": ""
+                }
+            ]
+        },
+        {
+            "list_name": "Hardcover Fiction",
+            "display_name": "Hardcover Fiction",
+            "bestsellers_date": "2019-10-12",
+            "published_date": "2019-10-27",
+            "rank": 2,
+            "rank_last_week": 3,
+            "weeks_on_list": 58,
+            "asterisk": 0,
+            "dagger": 0,
+            "amazon_product_url": "https://www.amazon.com/Where-Crawdads-Sing-Delia-Owens/dp/0735219095?tag=NYTBS-20",
+            "isbns": [
+                {
+                    "isbn10": "0735219095",
+                    "isbn13": "9780735219090"
+                },
+                {
+                    "isbn10": "0735219117",
+                    "isbn13": "9780735219113"
+                },
+                {
+                    "isbn10": "0525640371",
+                    "isbn13": "9780525640370"
+                },
+                {
+                    "isbn10": "0593105419",
+                    "isbn13": "9780593105412"
+                }
+            ],
+            "book_details": [
+                {
+                    "title": "WHERE THE CRAWDADS SING",
+                    "description": "A woman who survived alone in the marsh becomes a murder suspect.",
+                    "contributor": "by Delia Owens",
+                    "author": "Delia Owens",
+                    "contributor_note": "",
+                    "price": 0,
+                    "age_group": "",
+                    "publisher": "Putnam",
+                    "primary_isbn13": "9780735219090",
+                    "primary_isbn10": "0735219095"
+                }
+            ],
+            "reviews": [
+                {
+                    "book_review_link": "",
+                    "first_chapter_link": "",
+                    "sunday_review_link": "",
+                    "article_chapter_link": ""
+                }
+            ]
+        },
+        {
+            "list_name": "Hardcover Fiction",
+            "display_name": "Hardcover Fiction",
+            "bestsellers_date": "2019-10-12",
+            "published_date": "2019-10-27",
+            "rank": 3,
+            "rank_last_week": 0,
+            "weeks_on_list": 1,
+            "asterisk": 0,
+            "dagger": 0,
+            "amazon_product_url": "https://www.amazon.com/What-Happens-Paradise-Elin-Hilderbrand/dp/0316435570?tag=NYTBS-20",
+            "isbns": [
+                {
+                    "isbn10": "0316435570",
+                    "isbn13": "9780316435574"
+                },
+                {
+                    "isbn10": "0316426075",
+                    "isbn13": "9780316426077"
+                }
+            ],
+            "book_details": [
+                {
+                    "title": "WHAT HAPPENS IN PARADISE",
+                    "description": "In the sequel to \"Winter in Paradise,\" Irene Steele visits the island of St. John to get to the bottom of the mysterious life and death of her husband.",
+                    "contributor": "by Elin Hilderbrand",
+                    "author": "Elin Hilderbrand",
+                    "contributor_note": "",
+                    "price": 0,
+                    "age_group": "",
+                    "publisher": "Little, Brown",
+                    "primary_isbn13": "9780316435574",
+                    "primary_isbn10": "0316435570"
+                }
+            ],
+            "reviews": [
+                {
+                    "book_review_link": "",
+                    "first_chapter_link": "",
+                    "sunday_review_link": "",
+                    "article_chapter_link": ""
+                }
+            ]
+        },
+        {
+            "list_name": "Hardcover Fiction",
+            "display_name": "Hardcover Fiction",
+            "bestsellers_date": "2019-10-12",
+            "published_date": "2019-10-27",
+            "rank": 4,
+            "rank_last_week": 0,
+            "weeks_on_list": 1,
+            "asterisk": 0,
+            "dagger": 0,
+            "amazon_product_url": "https://www.amazon.com/Ninth-House-Leigh-Bardugo/dp/1250313074?tag=NYTBS-20",
+            "isbns": [
+                {
+                    "isbn10": "1250313074",
+                    "isbn13": "9781250313072"
+                },
+                {
+                    "isbn10": "1250266459",
+                    "isbn13": "9781250266453"
+                }
+            ],
+            "book_details": [
+                {
+                    "title": "NINTH HOUSE",
+                    "description": "After mysteriously surviving a multiple homicide, Galaxy Stern comes face to face with dark magic, murder and more at Yale University.",
+                    "contributor": "by Leigh Bardugo",
+                    "author": "Leigh Bardugo",
+                    "contributor_note": "",
+                    "price": 0,
+                    "age_group": "",
+                    "publisher": "Flatiron",
+                    "primary_isbn13": "9781250313072",
+                    "primary_isbn10": "1250313074"
+                }
+            ],
+            "reviews": [
+                {
+                    "book_review_link": "",
+                    "first_chapter_link": "",
+                    "sunday_review_link": "",
+                    "article_chapter_link": ""
+                }
+            ]
+        },
+        {
+            "list_name": "Hardcover Fiction",
+            "display_name": "Hardcover Fiction",
+            "bestsellers_date": "2019-10-12",
+            "published_date": "2019-10-27",
+            "rank": 5,
+            "rank_last_week": 2,
+            "weeks_on_list": 5,
+            "asterisk": 0,
+            "dagger": 0,
+            "amazon_product_url": "https://www.amazon.com/Institute-Novel-Stephen-King/dp/1982110562?tag=NYTBS-20",
+            "isbns": [
+                {
+                    "isbn10": "1982110562",
+                    "isbn13": "9781982110567"
+                },
+                {
+                    "isbn10": "1982110597",
+                    "isbn13": "9781982110598"
+                },
+                {
+                    "isbn10": "1508279071",
+                    "isbn13": "9781508279075"
+                },
+                {
+                    "isbn10": "1508279063",
+                    "isbn13": "9781508279068"
+                }
+            ],
+            "book_details": [
+                {
+                    "title": "THE INSTITUTE",
+                    "description": "Children with special talents are abducted and sequestered in an institution where the sinister staff seeks to extract their gifts through harsh methods.",
+                    "contributor": "by Stephen King",
+                    "author": "Stephen King",
+                    "contributor_note": "",
+                    "price": 0,
+                    "age_group": "",
+                    "publisher": "Scribner",
+                    "primary_isbn13": "9781982110567",
+                    "primary_isbn10": "1982110562"
+                }
+            ],
+            "reviews": [
+                {
+                    "book_review_link": "https://www.nytimes.com/2019/09/08/books/review-institute-stephen-king.html",
+                    "first_chapter_link": "",
+                    "sunday_review_link": "",
+                    "article_chapter_link": ""
+                }
+            ]
+        },
+        {
+            "list_name": "Hardcover Fiction",
+            "display_name": "Hardcover Fiction",
+            "bestsellers_date": "2019-10-12",
+            "published_date": "2019-10-27",
+            "rank": 6,
+            "rank_last_week": 1,
+            "weeks_on_list": 3,
+            "asterisk": 0,
+            "dagger": 0,
+            "amazon_product_url": "https://www.amazon.com/Water-Dancer-Oprahs-Book-Club/dp/0399590595?tag=NYTBS-20",
+            "isbns": [
+                {
+                    "isbn10": "0399590595",
+                    "isbn13": "9780399590597"
+                },
+                {
+                    "isbn10": "0525494847",
+                    "isbn13": "9780525494843"
+                }
+            ],
+            "book_details": [
+                {
+                    "title": "THE WATER DANCER",
+                    "description": "A young man who was gifted with a mysterious power becomes part of a war between slavers and the enslaved.",
+                    "contributor": "by Ta-Nehisi Coates",
+                    "author": "Ta-Nehisi Coates",
+                    "contributor_note": "",
+                    "price": 0,
+                    "age_group": "",
+                    "publisher": "One World",
+                    "primary_isbn13": "9780399590597",
+                    "primary_isbn10": "0399590595"
+                }
+            ],
+            "reviews": [
+                {
+                    "book_review_link": "https://www.nytimes.com/2019/09/20/books/review-water-dancer-ta-nehisi-coates.html",
+                    "first_chapter_link": "",
+                    "sunday_review_link": "",
+                    "article_chapter_link": ""
+                }
+            ]
+        },
+        {
+            "list_name": "Hardcover Fiction",
+            "display_name": "Hardcover Fiction",
+            "bestsellers_date": "2019-10-12",
+            "published_date": "2019-10-27",
+            "rank": 7,
+            "rank_last_week": 4,
+            "weeks_on_list": 3,
+            "asterisk": 0,
+            "dagger": 0,
+            "amazon_product_url": "https://www.amazon.com/Dutch-House-Novel-Ann-Patchett/dp/0062963678?tag=NYTBS-20",
+            "isbns": [
+                {
+                    "isbn10": "0062963678",
+                    "isbn13": "9780062963673"
+                },
+                {
+                    "isbn10": "0062963694",
+                    "isbn13": "9780062963697"
+                }
+            ],
+            "book_details": [
+                {
+                    "title": "THE DUTCH HOUSE",
+                    "description": "A sibling relationship is impacted when the family goes from poverty to wealth and back again over the course of many decades.",
+                    "contributor": "by Ann Patchett",
+                    "author": "Ann Patchett",
+                    "contributor_note": "",
+                    "price": 0,
+                    "age_group": "",
+                    "publisher": "Harper",
+                    "primary_isbn13": "9780062963673",
+                    "primary_isbn10": "0062963678"
+                }
+            ],
+            "reviews": [
+                {
+                    "book_review_link": "https://www.nytimes.com/2019/09/21/books/review-dutch-house-ann-patchett.html",
+                    "first_chapter_link": "",
+                    "sunday_review_link": "",
+                    "article_chapter_link": ""
+                }
+            ]
+        },
+        {
+            "list_name": "Hardcover Fiction",
+            "display_name": "Hardcover Fiction",
+            "bestsellers_date": "2019-10-12",
+            "published_date": "2019-10-27",
+            "rank": 8,
+            "rank_last_week": 6,
+            "weeks_on_list": 5,
+            "asterisk": 0,
+            "dagger": 0,
+            "amazon_product_url": "https://www.amazon.com/Testaments-Sequel-Handmaids-Tale/dp/0385543786?tag=NYTBS-20",
+            "isbns": [
+                {
+                    "isbn10": "0385543786",
+                    "isbn13": "9780385543781"
+                },
+                {
+                    "isbn10": "0385543794",
+                    "isbn13": "9780385543798"
+                },
+                {
+                    "isbn10": "0525590455",
+                    "isbn13": "9780525590453"
+                }
+            ],
+            "book_details": [
+                {
+                    "title": "THE TESTAMENTS",
+                    "description": "In a sequel to “The Handmaid’s Tale,” old secrets bring three women together as the Republic of Gilead’s theocratic regime shows signs of decay.",
+                    "contributor": "by Margaret Atwood",
+                    "author": "Margaret Atwood",
+                    "contributor_note": "",
+                    "price": 0,
+                    "age_group": "",
+                    "publisher": "Nan A. Talese/Doubleday",
+                    "primary_isbn13": "9780385543781",
+                    "primary_isbn10": "0385543786"
+                }
+            ],
+            "reviews": [
+                {
+                    "book_review_link": "",
+                    "first_chapter_link": "",
+                    "sunday_review_link": "",
+                    "article_chapter_link": ""
+                }
+            ]
+        },
+        {
+            "list_name": "Hardcover Fiction",
+            "display_name": "Hardcover Fiction",
+            "bestsellers_date": "2019-10-12",
+            "published_date": "2019-10-27",
+            "rank": 9,
+            "rank_last_week": 0,
+            "weeks_on_list": 1,
+            "asterisk": 0,
+            "dagger": 0,
+            "amazon_product_url": "https://www.amazon.com/Childs-Play-Novel-Danielle-Steel-ebook/dp/B07MGDJT1N?tag=NYTBS-20",
+            "isbns": [
+                {
+                    "isbn10": "039917950X",
+                    "isbn13": "9780399179501"
+                },
+                {
+                    "isbn10": "0399179518",
+                    "isbn13": "9780399179518"
+                }
+            ],
+            "book_details": [
+                {
+                    "title": "CHILD'S PLAY",
+                    "description": "A prestigious New York lawyer learns that the life she constructed for her children and herself isn't exactly what she thought it was.",
+                    "contributor": "by Danielle Steel",
+                    "author": "Danielle Steel",
+                    "contributor_note": "",
+                    "price": 0,
+                    "age_group": "",
+                    "publisher": "Delacorte",
+                    "primary_isbn13": "9780399179501",
+                    "primary_isbn10": "039917950X"
+                }
+            ],
+            "reviews": [
+                {
+                    "book_review_link": "",
+                    "first_chapter_link": "",
+                    "sunday_review_link": "",
+                    "article_chapter_link": ""
+                }
+            ]
+        },
+        {
+            "list_name": "Hardcover Fiction",
+            "display_name": "Hardcover Fiction",
+            "bestsellers_date": "2019-10-12",
+            "published_date": "2019-10-27",
+            "rank": 10,
+            "rank_last_week": 0,
+            "weeks_on_list": 1,
+            "asterisk": 0,
+            "dagger": 0,
+            "amazon_product_url": "https://www.amazon.com/Giver-Stars-Novel-Jojo-Moyes/dp/0399562486?tag=NYTBS-20",
+            "isbns": [
+                {
+                    "isbn10": "0399562486",
+                    "isbn13": "9780399562488"
+                },
+                {
+                    "isbn10": "0399562508",
+                    "isbn13": "9780399562501"
+                }
+            ],
+            "book_details": [
+                {
+                    "title": "THE GIVER OF STARS",
+                    "description": "In Depression-era America, five women refuse to be cowed by men or convention as they deliver books throughout the mountains of Kentucky.",
+                    "contributor": "by Jojo Moyes",
+                    "author": "Jojo Moyes",
+                    "contributor_note": "",
+                    "price": 0,
+                    "age_group": "",
+                    "publisher": "Pamela Dorman/Viking",
+                    "primary_isbn13": "9780399562488",
+                    "primary_isbn10": "0399562486"
+                }
+            ],
+            "reviews": [
+                {
+                    "book_review_link": "",
+                    "first_chapter_link": "",
+                    "sunday_review_link": "",
+                    "article_chapter_link": ""
+                }
+            ]
+        },
+        {
+            "list_name": "Hardcover Fiction",
+            "display_name": "Hardcover Fiction",
+            "bestsellers_date": "2019-10-12",
+            "published_date": "2019-10-27",
+            "rank": 11,
+            "rank_last_week": 5,
+            "weeks_on_list": 2,
+            "asterisk": 0,
+            "dagger": 0,
+            "amazon_product_url": "https://www.amazon.com/Bloody-Genius-Virgil-Flowers-Novel/dp/0525536612?tag=NYTBS-20",
+            "isbns": [
+                {
+                    "isbn10": "0525536612",
+                    "isbn13": "9780525536611"
+                }
+            ],
+            "book_details": [
+                {
+                    "title": "BLOODY GENIUS",
+                    "description": "The 12th book in the Virgil Flowers series. A fight between university departments turns deadly.",
+                    "contributor": "by John Sandford",
+                    "author": "John Sandford",
+                    "contributor_note": "",
+                    "price": 0,
+                    "age_group": "",
+                    "publisher": "Putnam",
+                    "primary_isbn13": "9780525536611",
+                    "primary_isbn10": "0525536612"
+                }
+            ],
+            "reviews": [
+                {
+                    "book_review_link": "",
+                    "first_chapter_link": "",
+                    "sunday_review_link": "",
+                    "article_chapter_link": ""
+                }
+            ]
+        },
+        {
+            "list_name": "Hardcover Fiction",
+            "display_name": "Hardcover Fiction",
+            "bestsellers_date": "2019-10-12",
+            "published_date": "2019-10-27",
+            "rank": 12,
+            "rank_last_week": 7,
+            "weeks_on_list": 3,
+            "asterisk": 0,
+            "dagger": 0,
+            "amazon_product_url": "https://www.amazon.com/Lethal-Agent-Mitch-Rapp-Novel-ebook/dp/B07NBJSFFJ?tag=NYTBS-20",
+            "isbns": [
+                {
+                    "isbn10": "1501190628",
+                    "isbn13": "9781501190629"
+                },
+                {
+                    "isbn10": "1982140127",
+                    "isbn13": "9781982140120"
+                },
+                {
+                    "isbn10": "1501190644",
+                    "isbn13": "9781501190643"
+                },
+                {
+                    "isbn10": "1508287716",
+                    "isbn13": "9781508287711"
+                },
+                {
+                    "isbn10": "1508287708",
+                    "isbn13": "9781508287704"
+                }
+            ],
+            "book_details": [
+                {
+                    "title": "VINCE FLYNN: LETHAL AGENT",
+                    "description": "Mexican cartels, ISIS and a possible pandemic bring Mitch Rapp back into action.",
+                    "contributor": "by Kyle Mills",
+                    "author": "Kyle Mills",
+                    "contributor_note": "",
+                    "price": 0,
+                    "age_group": "",
+                    "publisher": "Emily Bestler/Atria",
+                    "primary_isbn13": "9781501190629",
+                    "primary_isbn10": "1501190628"
+                }
+            ],
+            "reviews": [
+                {
+                    "book_review_link": "",
+                    "first_chapter_link": "",
+                    "sunday_review_link": "",
+                    "article_chapter_link": ""
+                }
+            ]
+        },
+        {
+            "list_name": "Hardcover Fiction",
+            "display_name": "Hardcover Fiction",
+            "bestsellers_date": "2019-10-12",
+            "published_date": "2019-10-27",
+            "rank": 13,
+            "rank_last_week": 8,
+            "weeks_on_list": 2,
+            "asterisk": 0,
+            "dagger": 0,
+            "amazon_product_url": "https://www.amazon.com/Cilkas-Journey-Novel-Tattooist-Auschwitz/dp/1250265703?tag=NYTBS-20",
+            "isbns": [
+                {
+                    "isbn10": "1250265703",
+                    "isbn13": "9781250265708"
+                },
+                {
+                    "isbn10": "1250265797",
+                    "isbn13": "9781250265791"
+                }
+            ],
+            "book_details": [
+                {
+                    "title": "CILKA'S JOURNEY",
+                    "description": "A 16-year-old, who sleeps with a concentration camp commandant in order to survive, is sentenced to a Siberian prison camp where she cares for the ill.",
+                    "contributor": "by Heather Morris",
+                    "author": "Heather Morris",
+                    "contributor_note": "",
+                    "price": 0,
+                    "age_group": "",
+                    "publisher": "St. Martin's",
+                    "primary_isbn13": "9781250265708",
+                    "primary_isbn10": "1250265703"
+                }
+            ],
+            "reviews": [
+                {
+                    "book_review_link": "",
+                    "first_chapter_link": "",
+                    "sunday_review_link": "",
+                    "article_chapter_link": ""
+                }
+            ]
+        },
+        {
+            "list_name": "Hardcover Fiction",
+            "display_name": "Hardcover Fiction",
+            "bestsellers_date": "2019-10-12",
+            "published_date": "2019-10-27",
+            "rank": 14,
+            "rank_last_week": 10,
+            "weeks_on_list": 2,
+            "asterisk": 0,
+            "dagger": 0,
+            "amazon_product_url": "https://www.amazon.com/Imaginary-Friend-Stephen-Chbosky/dp/1538731339?tag=NYTBS-20",
+            "isbns": [
+                {
+                    "isbn10": "1538731339",
+                    "isbn13": "9781538731338"
+                }
+            ],
+            "book_details": [
+                {
+                    "title": "IMAGINARY FRIEND",
+                    "description": "After disappearing for six days, a boy emerges from the woods with a voice in his head that sends him on a mission.",
+                    "contributor": "by Stephen Chbosky",
+                    "author": "Stephen Chbosky",
+                    "contributor_note": "",
+                    "price": 0,
+                    "age_group": "",
+                    "publisher": "Grand Central",
+                    "primary_isbn13": "9781538731338",
+                    "primary_isbn10": "1538731339"
+                }
+            ],
+            "reviews": [
+                {
+                    "book_review_link": "https://www.nytimes.com/2019/10/07/books/review/imaginary-friend-stephen-chbosky.html",
+                    "first_chapter_link": "",
+                    "sunday_review_link": "",
+                    "article_chapter_link": ""
+                }
+            ]
+        },
+        {
+            "list_name": "Hardcover Fiction",
+            "display_name": "Hardcover Fiction",
+            "bestsellers_date": "2019-10-12",
+            "published_date": "2019-10-27",
+            "rank": 15,
+            "rank_last_week": 13,
+            "weeks_on_list": 6,
+            "asterisk": 0,
+            "dagger": 0,
+            "amazon_product_url": "https://www.amazon.com/Oracle-Jubilean-Mysteries-Unveiled/dp/1629996297?tag=NYTBS-20",
+            "isbns": [
+                {
+                    "isbn10": "1629996297",
+                    "isbn13": "9781629996295"
+                },
+                {
+                    "isbn10": "1629996300",
+                    "isbn13": "9781629996301"
+                }
+            ],
+            "book_details": [
+                {
+                    "title": "THE ORACLE",
+                    "description": "A traveler discovers mysteries hidden behind seven locked doors.",
+                    "contributor": "by Jonathan Cahn",
+                    "author": "Jonathan Cahn",
+                    "contributor_note": "",
+                    "price": 0,
+                    "age_group": "",
+                    "publisher": "Front Line",
+                    "primary_isbn13": "9781629996295",
+                    "primary_isbn10": "1629996297"
+                }
+            ],
+            "reviews": [
+                {
+                    "book_review_link": "",
+                    "first_chapter_link": "",
+                    "sunday_review_link": "",
+                    "article_chapter_link": ""
+                }
+            ]
+        }
+    ]
+}
