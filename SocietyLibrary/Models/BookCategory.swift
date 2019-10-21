@@ -30,5 +30,6 @@ struct Category: Codable {
     
     let list_name: String
     let display_name: String
+    let list_name_encoded: String
 }
 
