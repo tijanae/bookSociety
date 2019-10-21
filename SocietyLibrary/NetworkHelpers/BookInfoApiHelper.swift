@@ -13,8 +13,12 @@ struct BookInfoAPIClient {
     
     static let manager = BookInfoAPIClient()
     
-    func getBookInfo(completionHandler: @escaping (Result<[BookData], AppError>) -> () ) {
-        
+    func getBookInfo(url: String,completionHandler: @escaping (Result<[BookData], AppError>) -> () ) {
+       
+        var bookInfoURL: URL {
+            guard let url = URL(string: "https://www.googleapis.com/books/v1/volumes?q=\(url)") else {fatalError("Error: Invalid URL")}
+            return url
+        }
         NetworkManager.manager.performDataTask(withUrl: bookInfoURL, httpMethod: .get) { (result) in
             switch result {
             case .failure(let error):
@@ -33,11 +37,6 @@ struct BookInfoAPIClient {
         }
         
     }
-    var bookInfoURL: URL {
-        guard let url = URL(string: "https://www.googleapis.com/books/v1/volumes?q=+isbn:0385514239") else {fatalError("Error: Invalid URL")}
-        return url
-    }
-    
     private init() {}
     
 }
