@@ -33,10 +33,10 @@ class BestsellerBookCell: UICollectionViewCell {
     
     lazy var bookStackView: UIStackView = {
         let bookStack = UIStackView(arrangedSubviews: [bookImage, bookName, bookText])
-        bookStack.axis = .horizontal
+        bookStack.axis = .vertical
         bookStack.alignment = .center
-        bookStack.distribution = .fillProportionally
-        bookStack.spacing = 10
+        bookStack.distribution = .fill
+        bookStack.spacing = 1
         return bookStack
     }()
     
