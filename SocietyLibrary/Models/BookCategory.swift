@@ -24,11 +24,6 @@ struct BookCategoryWrapper: Codable {
         return response.results
     }
     
-//    static func getWeather(from jsonData: Data) throws -> [DailyDatum]? {
-//        let response = try JSONDecoder().decode(Weather.self, from: jsonData)
-//        return response.daily.data
-//
-//    }
 }
 
 struct Category: Codable {
