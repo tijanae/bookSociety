@@ -13,9 +13,9 @@ struct BestsellerAPIClient {
     static let manager = BestsellerAPIClient()
     
     func getBestSellers(category: String, completionHandler: @escaping (Result<[BestSeller], AppError>) -> () ) {
-        let fixedCategory = category.replacingOccurrences(of: " ", with: "+")
         var bestSellerURL: URL {
-            guard let url = URL(string: "https://api.nytimes.com/svc/books/v3/lists.json?api-key=\(Secrets.nytKey)&list=\(fixedCategory)") else {fatalError("Error: Invalid URL")}
+            guard let url = URL(string: "https://api.nytimes.com/svc/books/v3/lists.json?api-key=\(Secrets.nytKey)&list=\(category)") else {fatalError("Error: Invalid URL")}
+            print(url)
             return url
         }
         NetworkManager.manager.performDataTask(withUrl: bestSellerURL, httpMethod: .get) { (result) in
