@@ -10,7 +10,11 @@ import UIKit
 
 class BestsellersVC: UIViewController {
 
-    var bestBooks = [Category]()
+    var bestBooks = [Category](){
+        didSet{
+            booksCollectionView.reloadData()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
@@ -29,7 +33,6 @@ class BestsellersVC: UIViewController {
       let bookPicker = UIPickerView()
         return bookPicker
     }()
-    
     lazy var booksCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -40,6 +43,8 @@ class BestsellersVC: UIViewController {
         cv.delegate = self
         return cv
     }()
+    
+    
 }
 extension BestsellersVC: UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
