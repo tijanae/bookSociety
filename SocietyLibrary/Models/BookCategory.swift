@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 struct BookCategory: Codable {
     
     static func getCategory(from jsonData: Data) -> [BookCategory]? {
@@ -15,3 +16,4 @@ struct BookCategory: Codable {
         return [BookCategory]()
     }
 }
+
