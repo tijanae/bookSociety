@@ -35,7 +35,7 @@ class BestsellerBookCell: UICollectionViewCell {
         let bookStack = UIStackView(arrangedSubviews: [bookImage, bookName, bookText])
         bookStack.axis = .horizontal
         bookStack.alignment = .center
-        bookStack.distribution = .fillEqually
+        bookStack.distribution = .fillProportionally
         bookStack.spacing = 10
         return bookStack
     }()
@@ -44,8 +44,10 @@ class BestsellerBookCell: UICollectionViewCell {
     bookStackView.translatesAutoresizingMaskIntoConstraints = false
           NSLayoutConstraint.activate([
               bookStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-              bookStackView.topAnchor.constraint(equalTo: bookStackView.bottomAnchor, constant: 10),
-              bookStackView.heightAnchor.constraint(equalToConstant: 50),
+              bookStackView.topAnchor.constraint(equalTo:
+                contentView.safeAreaLayoutGuide.topAnchor, constant: 10),
+              bookStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//              bookStackView.heightAnchor.constraint(equalToConstant: 50),
               bookStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
           ])
     }
