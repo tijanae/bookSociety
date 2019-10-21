@@ -12,11 +12,15 @@ struct BookInfo: Codable {
     
     let items: [BookData]
     
-    static func getBookInfo(from jsonData: Data) -> [BookInfo]? {
+    static func getBookInfo(from jsonData: Data) throws -> [BookData]? {
         
-        return [BookInfo]()
+        let response = try JSONDecoder().decode(BookInfo.self, from: jsonData)
+        
+        return response.items
+    
     }
 }
+
 
 struct BookData: Codable {
     let imageLinks: ImageLink
