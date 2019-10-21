@@ -25,7 +25,7 @@ class BestsellersVC: UIViewController {
             booksCollectionView.reloadData()
         }
     }
-    var book = [BookData]()
+    var book = [Item]()
     
     
     override func viewDidLoad() {
@@ -170,11 +170,19 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         return CGSize(width: 400, height: 400)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+<<<<<<< HEAD
         let detailVC = BookDetailVC()
         let selectedBook = book[indexPath.row]
         //               detailVC.book = selectedBook
         //
         self.navigationController?.pushViewController(detailVC, animated: true)
+=======
+         let detailVC = BookDetailVC()
+//               let selectedBook = book[indexPath.row]
+//               detailVC.book = selectedBook
+               
+               self.navigationController?.pushViewController(detailVC, animated: true)
+>>>>>>> ea93c97e59ed3bf4f4e40d54a871747796497e66
     }
 }
 
