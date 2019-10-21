@@ -12,10 +12,14 @@ struct CategoryBestSeller: Codable {
     
     let results: [BestSeller]
     
-    static func getBestSellers(from jsonData: Data) -> [CategoryBestSeller]? {
+    static func getBestSellers(from jsonData: Data) throws -> [BestSeller]? {
         
-        return [CategoryBestSeller]()
+        let response = try JSONDecoder().decode(CategoryBestSeller.self, from: jsonData)
+        
+        return response.results
     }
+    
+
 }
 
 struct BestSeller: Codable {

@@ -30,22 +30,23 @@ class SocietyLibraryTests: XCTestCase {
         
     }
     
+    func testCategoryBestsellerFromJSON() {
+        
+        let testBundle = Bundle(for: type(of: self))
+               guard let pathToData = testBundle.path(forResource: "CategoryBestseller", ofType: "json") else { XCTFail("Couldn't find json file")
+                   return}
+               
+               let url = URL(fileURLWithPath: pathToData)
+               do {
+                   let data = try Data(contentsOf: url)
+                let cateogry = try CategoryBestSeller.getBestSellers(from: data)
+                   
+                   XCTAssert(cateogry != nil, "We couldn't get those best sellers")
+               } catch {
+                   XCTFail(error.localizedDescription)
+               }
+        
+    }
     
-    
-//    func testWeatherModelFromJSON() {
-//        guard let path = Bundle.main.path(forResource: "Weather", ofType: "json") else {XCTFail(); return}
-//        let urlFromFile = URL(fileURLWithPath: path)
-//        do {
-//            let data = try Data(contentsOf: urlFromFile)
-//            guard let weatherData = try Weather.getWeather(from: data) else {XCTFail(); return}
-//            print(weatherData.count)
-//            XCTAssert(weatherData.count > 0)
-//
-//        } catch {
-//            XCTFail()
-//            print(error)
-//        }
-//
-//    }
     
 }
