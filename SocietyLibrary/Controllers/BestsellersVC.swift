@@ -151,18 +151,34 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell", for: indexPath) as? BestsellerBookCell else {return UICollectionViewCell()}
         let data = bestSeller[indexPath.row]
         
-        ImageManager.manager.getImage(urlStr: data.isbns[0].isbn10) { (result) in
+        
+        BookInfoAPIClient.manager.getBookInfo(url: data.isbns[0].isbn10){ (result) in
             DispatchQueue.main.async {
                 switch result{
                 case .failure(let error):
                     print(error)
-                case .success(let image):
-                    cell.bookImage.image = image
+                case .success(let book):
+                    self.book = book
+                    
+            
+                    ImageManager.manager.getImage(urlStr: book[0].volumeInfo.imageLinks.thumbnail  ) { (result) in
+                       
+                        DispatchQueue.main.async {
+                            switch result{
+                            case .failure(let error):
+                                print(error)
+                            case .success(let image):
+                                cell.bookImage.image = image
+                            }
+                        }
+                        
+                    }
                 }
             }
         }
-        cell.bookName.text = data.book_details[0].title
         
+        
+        cell.bookName.text = data.book_details[0].title
         return cell
     }
     
@@ -170,19 +186,14 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         return CGSize(width: 400, height: 400)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-<<<<<<< HEAD
+        
         let detailVC = BookDetailVC()
         let selectedBook = book[indexPath.row]
         //               detailVC.book = selectedBook
-        //
         self.navigationController?.pushViewController(detailVC, animated: true)
-=======
-         let detailVC = BookDetailVC()
-//               let selectedBook = book[indexPath.row]
-//               detailVC.book = selectedBook
-               
-               self.navigationController?.pushViewController(detailVC, animated: true)
->>>>>>> ea93c97e59ed3bf4f4e40d54a871747796497e66
+        //               let selectedBook = book[indexPath.row]
+        //               detailVC.book = selectedBook
+        
     }
 }
 
