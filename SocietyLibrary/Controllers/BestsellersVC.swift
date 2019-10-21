@@ -12,10 +12,21 @@ class BestsellersVC: UIViewController {
     
     var bestBooks = [Category](){
         didSet{
-            booksCollectionView.reloadData()
             bookPicker.reloadAllComponents()
         }
     }
+    var category = String(){
+        didSet{
+        loadBestSellers()
+        }
+    }
+    var bestSeller = [BestSeller](){
+        didSet{
+            booksCollectionView.reloadData()
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
@@ -84,6 +95,18 @@ class BestsellersVC: UIViewController {
         constrainBooksCollectionView()
         constrainBooksPicker()
     }
+    private func loadBestSellers(){
+        BestsellerAPIClient.manager.getBestSellers(category: category) { (result) in
+                   DispatchQueue.main.async {
+                    switch result{
+                    case .failure(let error):
+                        print(error)
+                    case .success(let best):
+                        self.bestSeller = best
+                    }
+                   }
+               }
+    }
     
 }
 extension BestsellersVC: UIPickerViewDelegate, UIPickerViewDataSource{
@@ -93,24 +116,27 @@ extension BestsellersVC: UIPickerViewDelegate, UIPickerViewDataSource{
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return bestBooks.count
-        
+     
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let book =  bestBooks[row].display_name
         return book
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+       
+        category = bestBooks[row].display_name
     }
 }
 extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(bestBooks)
-        return bestBooks.count
+        print(bestSeller)
+        return bestSeller.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell", for: indexPath) as? BestsellerBookCell else {return UICollectionViewCell()}
+        let data = bestSeller[indexPath.row]
+        cell.bookName.text = data.book_details[0].title
         return cell
     }
     

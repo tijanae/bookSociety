@@ -48,5 +48,23 @@ class SocietyLibraryTests: XCTestCase {
         
     }
     
+    func testBookInfoFromJSON() {
+        
+        let testBundle = Bundle(for: type(of: self))
+        guard let pathToData = testBundle.path(forResource: "BookInfo", ofType: "json") else {
+            XCTFail("Could not find json file")
+        return}
+        
+        let url = URL(fileURLWithPath: pathToData)
+        do {
+            let data = try Data(contentsOf: url)
+            let category = try BookInfo.getBookInfo(from: data)
+            
+            XCTAssert(category != nil, "We couldnt get the Image URLS")
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+    }
+    
     
 }
