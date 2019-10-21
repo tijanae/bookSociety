@@ -12,7 +12,7 @@ struct BookCategoryAPIClient {
     
     static let manager = BookCategoryAPIClient()
     
-    func getCategory(completionHandler: @escaping (Result<[BookCategory], AppError>) -> () ) {
+    func getCategory(completionHandler: @escaping (Result<[Category], AppError>) -> () ) {
         
         NetworkManager.manager.performDataTask(withUrl: cateogryURL, httpMethod: .get) { (result) in
             switch result {
@@ -21,7 +21,7 @@ struct BookCategoryAPIClient {
                 return
             case .success(let data):
                 do {
-                    let category = try BookCategory.getCategory(from: data)
+                    let category = try BookCategoryWrapper.getCategory(from: data)
                     guard let categoryUnwrapped = category else {completionHandler(.failure(.invalidJSONResponse));return
                     }
                     completionHandler(.success(categoryUnwrapped))

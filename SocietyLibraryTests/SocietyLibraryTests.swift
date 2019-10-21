@@ -11,24 +11,41 @@ import XCTest
 
 class SocietyLibraryTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testBookCategoryFromJSON() {
+        
+        
+        let testBundle = Bundle(for: type(of: self))
+        guard let pathToData = testBundle.path(forResource: "BookCategory", ofType: "json") else { XCTFail("Couldn't find json file")
+            return}
+        
+        let url = URL(fileURLWithPath: pathToData)
+        do {
+            let data = try Data(contentsOf: url)
+            let cateogry = try BookCategoryWrapper.getCategory(from: data)
+            
+            XCTAssert(cateogry != nil, "We couldn't get those categories")
+        } catch {
+            XCTFail(error.localizedDescription)
         }
+        
     }
-
+    
+    
+    
+//    func testWeatherModelFromJSON() {
+//        guard let path = Bundle.main.path(forResource: "Weather", ofType: "json") else {XCTFail(); return}
+//        let urlFromFile = URL(fileURLWithPath: path)
+//        do {
+//            let data = try Data(contentsOf: urlFromFile)
+//            guard let weatherData = try Weather.getWeather(from: data) else {XCTFail(); return}
+//            print(weatherData.count)
+//            XCTAssert(weatherData.count > 0)
+//
+//        } catch {
+//            XCTFail()
+//            print(error)
+//        }
+//
+//    }
+    
 }
