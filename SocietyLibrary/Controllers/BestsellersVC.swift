@@ -124,12 +124,11 @@ extension BestsellersVC: UIPickerViewDelegate, UIPickerViewDataSource{
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
        
-        category = bestBooks[row].display_name
+        category = bestBooks[row].list_name_encoded
     }
 }
 extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(bestSeller)
         return bestSeller.count
     }
     
