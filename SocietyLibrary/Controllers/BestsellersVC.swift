@@ -29,7 +29,17 @@ class BestsellersVC: UIViewController {
       let bookPicker = UIPickerView()
         return bookPicker
     }()
-
+    
+    lazy var booksCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        cv.register(BestsellerBookCell.self, forCellWithReuseIdentifier: "bookCell")
+        cv.dataSource = self
+        cv.delegate = self
+        return cv
+    }()
 }
 extension BestsellersVC: UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -43,6 +53,16 @@ extension BestsellersVC: UIPickerViewDelegate, UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let book =  bestBooks[row]
         return book
+    }
+}
+extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return bestBooks.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell", for: indexPath) as BestsellerBookCell else {return UICollectionViewCell()}
+        return cell
     }
     
     
