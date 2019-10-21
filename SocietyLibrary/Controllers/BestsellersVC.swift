@@ -9,16 +9,20 @@
 import UIKit
 
 class BestsellersVC: UIViewController {
-
+    
     var bestBooks = [Category](){
         didSet{
             booksCollectionView.reloadData()
+            bookPicker.reloadAllComponents()
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
         setUpDelegates()
+        constrainBooksCollectionView()
+        loadData()
+        setUpConstraints()
     }
     private func setUpDelegates(){
         bookPicker.delegate = self
@@ -30,20 +34,56 @@ class BestsellersVC: UIViewController {
         view.backgroundColor = .white
     }
     lazy var bookPicker: UIPickerView = {
-      let bookPicker = UIPickerView()
+        let bookPicker = UIPickerView()
         return bookPicker
     }()
     lazy var booksCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.backgroundColor = .clear
+        cv.backgroundColor = .blue
         cv.register(BestsellerBookCell.self, forCellWithReuseIdentifier: "bookCell")
         cv.dataSource = self
         cv.delegate = self
         return cv
     }()
-    
+    func loadData(){
+        BookCategoryAPIClient.manager.getCategory{ (result) in
+            DispatchQueue.main.async {
+                switch result{
+                case .failure(let error):
+                    print(error)
+                case .success(let arr):
+                    self.bestBooks = arr
+                }
+            }
+        }
+    }
+    private func constrainBooksCollectionView(){
+        view.addSubview(booksCollectionView)
+    booksCollectionView.translatesAutoresizingMaskIntoConstraints = false
+          NSLayoutConstraint.activate([
+              booksCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+              booksCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+              booksCollectionView.heightAnchor.constraint(equalToConstant: 250),
+              booksCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor),
+          ])
+    }
+    private func constrainBooksPicker(){
+        view.addSubview(bookPicker)
+    bookPicker.translatesAutoresizingMaskIntoConstraints = false
+          NSLayoutConstraint.activate([
+              bookPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+              bookPicker.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -150),
+              bookPicker.heightAnchor.constraint(equalToConstant: 250),
+              bookPicker.widthAnchor.constraint(equalTo: view.widthAnchor),
+          ])
+    }
+
+    private func setUpConstraints(){
+        constrainBooksCollectionView()
+        constrainBooksPicker()
+    }
     
 }
 extension BestsellersVC: UIPickerViewDelegate, UIPickerViewDataSource{
@@ -53,23 +93,29 @@ extension BestsellersVC: UIPickerViewDelegate, UIPickerViewDataSource{
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return bestBooks.count
-
+        
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let book =  bestBooks[row]
+        let book =  bestBooks[row].display_name
         return book
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
 }
-extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource{
+extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(bestBooks)
         return bestBooks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell", for: indexPath) as BestsellerBookCell else {return UICollectionViewCell()}
+        guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell", for: indexPath) as? BestsellerBookCell else {return UICollectionViewCell()}
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 400, height: 400)
+    }
 }
 
