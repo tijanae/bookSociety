@@ -14,7 +14,9 @@ class ImageManager {
     static let manager = ImageManager()
     
     func getImage(urlStr: String, completionHandler: @escaping (Result<UIImage, AppError>) -> () ) {
+            print(urlStr)
         guard let url = URL(string: urlStr) else {
+       
             completionHandler(.failure(.badURL))
             return
         }
