@@ -14,7 +14,7 @@ struct BookInfoAPIClient {
     static let manager = BookInfoAPIClient()
     
 
-    func getBookInfo(url: String,completionHandler: @escaping (Result<[BookData], AppError>) -> () ) {
+    func getBookInfo(url: String, completionHandler: @escaping (Result<[Item], AppError>) -> () ) {
        
         var bookInfoURL: URL {
             guard let url = URL(string: "https://www.googleapis.com/books/v1/volumes?q=\(url)") else {fatalError("Error: Invalid URL")}
