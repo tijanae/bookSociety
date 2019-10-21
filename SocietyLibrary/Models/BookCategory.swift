@@ -8,10 +8,27 @@
 
 import Foundation
 
-struct BookCategory: Codable {
+
+struct BookCategoryWrapper: Codable {
+
+
+
     
-    static func getCategory(from jsonData: Data) -> [BookCategory]? {
+    let results: [Category]
+    
+    
+    static func getCategory(from jsonData: Data) throws -> [Category]? {
         
-        return [BookCategory]()
+        let response = try JSONDecoder().decode(BookCategoryWrapper.self, from: jsonData)
+        
+        return response.results
     }
+    
 }
+
+struct Category: Codable {
+    
+    let list_name: String
+    let display_name: String
+}
+

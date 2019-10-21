@@ -10,8 +10,23 @@ import Foundation
 
 struct BookInfo: Codable {
     
-    static func getBookInfo(from jsonData: Data) -> [BookInfo]? {
+    let items: [BookData]
+    
+    static func getBookInfo(from jsonData: Data) throws -> [BookData]? {
         
-        return [BookInfo]()
+        let response = try JSONDecoder().decode(BookInfo.self, from: jsonData)
+        
+        return response.items
+    
     }
+}
+
+
+struct BookData: Codable {
+    let imageLinks: ImageLink
+}
+
+struct ImageLink: Codable {
+    let smallThumbnail: String
+    let thumbnail: String
 }

@@ -10,8 +10,35 @@ import Foundation
 
 struct CategoryBestSeller: Codable {
     
-    static func getBestSellers(from jsonData: Data) -> [CategoryBestSeller]? {
+    let results: [BestSeller]
+    
+    static func getBestSellers(from jsonData: Data) throws -> [BestSeller]? {
         
-        return [CategoryBestSeller]()
+        let response = try JSONDecoder().decode(CategoryBestSeller.self, from: jsonData)
+        
+        return response.results
     }
+    
+
+}
+
+struct BestSeller: Codable {
+    
+    let display_name: String
+    let weeks_on_list: Int
+    let amazon_product_url: String
+    let isbns: [Isbn]
+    let book_details: [BookDetail]
+    
+}
+
+struct Isbn: Codable {
+    let isbn10: String
+    let isbn13: String
+}
+
+struct BookDetail: Codable {
+    let title: String
+    let description: String
+    let author: String
 }

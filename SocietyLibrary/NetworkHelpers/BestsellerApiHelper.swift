@@ -12,7 +12,7 @@ struct BestsellerAPIClient {
     
     static let manager = BestsellerAPIClient()
     
-    func getBestSellers(completionHandler: @escaping (Result<[CategoryBestSeller], AppError>) -> () ) {
+    func getBestSellers(completionHandler: @escaping (Result<[BestSeller], AppError>) -> () ) {
         
         NetworkManager.manager.performDataTask(withUrl: bestSellerURL, httpMethod: .get) { (result) in
             switch result {
