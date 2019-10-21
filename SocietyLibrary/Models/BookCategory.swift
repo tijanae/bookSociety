@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+struct BookCategory: Codable {
+    
+    static func getCategory(from jsonData: Data) -> [BookCategory]? {
+        
+        return [BookCategory]()
+    }
+}
