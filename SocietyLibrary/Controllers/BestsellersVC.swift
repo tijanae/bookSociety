@@ -12,7 +12,12 @@ class BestsellersVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setUpView()
+    
+    }
+    private func setUpView(){
+        self.navigationItem.title = "NYT Bestsellers"
+        view.backgroundColor = .white
     }
 
 
