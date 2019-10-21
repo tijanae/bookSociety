@@ -13,7 +13,7 @@ struct BookInfoAPIClient {
     
     static let manager = BookInfoAPIClient()
     
-    func getBookInfo(completionHandler: @escaping (Result<[BookData], AppError>) -> () ) {
+    func getBookInfo(completionHandler: @escaping (Result<[Item], AppError>) -> () ) {
         
         NetworkManager.manager.performDataTask(withUrl: bookInfoURL, httpMethod: .get) { (result) in
             switch result {
