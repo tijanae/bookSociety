@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+struct BookInfo: Codable {
+    
+    static func getBookInfo(from jsonData: Data) -> [BookInfo]? {
+        
+        return [BookInfo]()
+    }
+}

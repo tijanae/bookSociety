@@ -8,3 +8,36 @@
 //
 
 import Foundation
+
+struct BookInfoAPIClient {
+    
+    static let manager = BookInfoAPIClient()
+    
+    func getBookInfo(completionHandler: @escaping (Result<[BookInfo], AppError>) -> () ) {
+        
+        NetworkManager.manager.performDataTask(withUrl: bookInfoURL, httpMethod: .get) { (result) in
+            switch result {
+            case .failure(let error):
+                completionHandler(.failure(error))
+                return
+            case .success(let data):
+                do {
+                    let bookInfo = try BookInfo.getBookInfo(from: data)
+                    guard let bookInfoUnwrapped = bookInfo else {completionHandler(.failure(.invalidJSONResponse));return
+                    }
+                    completionHandler(.success(bookInfoUnwrapped))
+                } catch {
+                    completionHandler(.failure(.couldNotParseJSON(rawError: error)))
+                }
+            }
+        }
+        
+    }
+    var bookInfoURL: URL {
+        guard let url = URL(string: "https://www.googleapis.com/books/v1/volumes?q=+isbn:0385514239") else {fatalError("Error: Invalid URL")}
+        return url
+    }
+    
+    private init() {}
+    
+}
