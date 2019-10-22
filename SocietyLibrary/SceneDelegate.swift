@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let settingsVC = SettingsVC()
     bestSellerVc.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 0)
     favoriteVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
-        settingsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
+    settingsVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
     
     let navigationController = UINavigationController(rootViewController: bestSellerVc)
     let tabBarController = UITabBarController()

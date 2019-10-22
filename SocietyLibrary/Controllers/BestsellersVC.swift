@@ -219,16 +219,16 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         //               detailVC.book = selectedBook
 
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           return CGSize(width: 400, height: 250)
-       }
-     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            let detailVC = BookDetailVC()
-//            let selectedBook = book[indexPath.row]
-            //               detailVC.book = selectedBook
-            self.navigationController?.pushViewController(detailVC, animated: true)
-        }
-}
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//           return CGSize(width: 400, height: 250)
+//       }
+//     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//            let detailVC = BookDetailVC()
+////            let selectedBook = book[indexPath.row]
+//            //               detailVC.book = selectedBook
+//            self.navigationController?.pushViewController(detailVC, animated: true)
+//        }
+//}
 //        BookInfoAPIClient.manager.getBookInfo(url: data.isbns[0].isbn10){ (result) in
 //            DispatchQueue.main.async {
 //                switch result{
@@ -255,4 +255,4 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
    
    
 
-
+}

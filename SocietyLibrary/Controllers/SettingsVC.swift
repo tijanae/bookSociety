@@ -13,6 +13,7 @@ class SettingsVC: UIViewController {
     
     lazy var settingsPicker : UIPickerView = {
         let settingsPicker = UIPickerView()
+        settingsPicker.backgroundColor = .lightGray
         return settingsPicker
     }()
     
@@ -21,7 +22,7 @@ class SettingsVC: UIViewController {
         super.viewDidLoad()
         constrainSettingsPicker()
         setNavBarLabel()
-        
+        view.backgroundColor = .white
     }
     
     
@@ -31,8 +32,8 @@ class SettingsVC: UIViewController {
         NSLayoutConstraint.activate([
             settingsPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             settingsPicker.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            //               favoritePicker.heightAnchor.constraint(equalToConstant: 250),
-            //               favoritePicker.widthAnchor.constraint(equalTo: view.widthAnchor),
+                           settingsPicker.heightAnchor.constraint(equalToConstant: 250),
+                           settingsPicker.widthAnchor.constraint(equalTo: view.widthAnchor),
         ])
     }
     
