@@ -18,6 +18,7 @@ struct BookInfoAPIClient {
        
         var bookInfoURL: URL {
             guard let url = URL(string: "https://www.googleapis.com/books/v1/volumes?q=\(url)&key=\(Secrets.googleKey)") else {fatalError("Error: Invalid URL")}
+
             return url
         }
 
