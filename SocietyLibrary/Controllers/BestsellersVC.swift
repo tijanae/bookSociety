@@ -12,17 +12,21 @@ class BestsellersVC: UIViewController {
     
     var bestBooks = [Category](){
         didSet{
-            bookPicker.reloadAllComponents()
+            DispatchQueue.main.async {
+                self.bookPicker.reloadAllComponents()
+
+            }
         }
     }
-    var category = String(){
-        didSet{
-            loadBestSellers()
-        }
-    }
+    var category = String()
+    
     var bestSeller = [BestSeller](){
+        
         didSet{
-            booksCollectionView.reloadData()
+            DispatchQueue.main.async {
+                self.booksCollectionView.reloadData()
+            }
+            
         }
     }
     var book = [Item]()
@@ -66,7 +70,10 @@ class BestsellersVC: UIViewController {
                 case .failure(let error):
                     print(error)
                 case .success(let arr):
-                    self.bestBooks = arr
+                    DispatchQueue.main.async {
+                        self.bestBooks = arr
+
+                    }
                 }
             }
         }
@@ -96,14 +103,17 @@ class BestsellersVC: UIViewController {
         constrainBooksCollectionView()
         constrainBooksPicker()
     }
-    private func loadBestSellers(){
+    private func loadBestSellers() {
         BestsellerAPIClient.manager.getBestSellers(category: category) { (result) in
             DispatchQueue.main.async {
                 switch result{
                 case .failure(let error):
                     print(error)
                 case .success(let best):
-                    self.bestSeller = best
+                    DispatchQueue.main.async {
+                        self.bestSeller = best
+                    }
+                    
                 }
             }
         }
@@ -140,6 +150,8 @@ extension BestsellersVC: UIPickerViewDelegate, UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         category = bestBooks[row].list_name_encoded
+        
+        loadBestSellers()
     }
 }
 extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -151,18 +163,35 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell", for: indexPath) as? BestsellerBookCell else {return UICollectionViewCell()}
         let data = bestSeller[indexPath.row]
         
-        ImageManager.manager.getImage(urlStr: data.isbns[0].isbn10) { (result) in
+        
+        BookInfoAPIClient.manager.getBookInfo(url: data.isbns[0].isbn10){ (result) in
             DispatchQueue.main.async {
                 switch result{
                 case .failure(let error):
                     print(error)
-                case .success(let image):
-                    cell.bookImage.image = image
+                case .success(let book):
+                    self.book = book
+                    
+            
+                    ImageManager.manager.getImage(urlStr: book[0].volumeInfo.imageLinks.thumbnail  ) { (result) in
+                       
+                        DispatchQueue.main.async {
+                            switch result{
+                            case .failure(let error):
+                                print(error)
+                            case .success(let image):
+                                cell.bookImage.image = image
+                            }
+                        }
+                        
+                    }
                 }
             }
         }
-        cell.bookName.text = data.book_details[0].title
         
+        
+        cell.bookName.text = data.book_details[0].title
+      
         return cell
     }
     
@@ -170,12 +199,14 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         return CGSize(width: 400, height: 400)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let detailVC = BookDetailVC()
         let selectedBook = book[indexPath.row]
         //               detailVC.book = selectedBook
         self.navigationController?.pushViewController(detailVC, animated: true)
         //               let selectedBook = book[indexPath.row]
         //               detailVC.book = selectedBook
+        
     }
 }
 
