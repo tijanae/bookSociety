@@ -191,7 +191,11 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = BookDetailVC()
         let selectedBook = bestSeller[indexPath.row]
+
+
         detailVC.book = selectedBook
+        
+
         self.navigationController?.pushViewController(detailVC, animated: true)
         
     }}
