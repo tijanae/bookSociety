@@ -19,12 +19,13 @@ class BestsellerBookCell: UICollectionViewCell {
     lazy var bookName: UILabel = {
         var bookName = UILabel()
         bookName.textAlignment = .center
+        bookName.font = UIFont.systemFont(ofSize: 12)
         return bookName
     }()
     
     lazy var bookText: UITextView = {
         let bookText = UITextView()
-        bookText.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
+//        bookText.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
         bookText.isEditable = false
         bookText.sizeToFit()
         bookText.isScrollEnabled = true
@@ -60,10 +61,10 @@ class BestsellerBookCell: UICollectionViewCell {
     }
     private func constrainBookText(){
         bookText.translatesAutoresizingMaskIntoConstraints = false
-        [bookText.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-         bookText.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 11),
+        [bookText.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+         bookText.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
          bookText.topAnchor.constraint(equalTo: bookName.bottomAnchor, constant: 0),
-         bookText.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -11)
+         bookText.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0)
             ].forEach{$0.isActive = true}
     }
     
@@ -72,6 +73,7 @@ class BestsellerBookCell: UICollectionViewCell {
         super.init(frame: frame)
         addViews()
         addConstraints()
+        contentView.backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
