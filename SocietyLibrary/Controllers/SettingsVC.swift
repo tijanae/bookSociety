@@ -10,10 +10,17 @@ import UIKit
 
 class SettingsVC: UIViewController {
     
+    var categoryArray = [Category]() {
+        didSet{
+            DispatchQueue.main.async {
+                self.settingsPicker.reloadAllComponents()
+            }
+        }
+    }
     
     lazy var settingsPicker : UIPickerView = {
         let settingsPicker = UIPickerView()
-        settingsPicker.backgroundColor = .lightGray
+        
         return settingsPicker
     }()
     
@@ -23,8 +30,36 @@ class SettingsVC: UIViewController {
         constrainSettingsPicker()
         setNavBarLabel()
         view.backgroundColor = .white
+        loadCategories()
+        setUpDelegates()
+        loadDefaults()
     }
     
+    private func loadDefaults(){
+        if let row = UserDefaults.standard.object(forKey: "selectedCategory"){
+            self.settingsPicker.selectRow(row as! Int, inComponent: 0, animated: true)
+        }else{
+            self.settingsPicker.selectRow(0, inComponent: 0, animated: true)
+        }
+        
+    }
+    
+    
+    private func loadCategories(){
+        BookCategoryAPIClient.manager.getCategory { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let categories):
+                self.categoryArray = categories
+            }
+        }
+        
+    }
+    private func setUpDelegates(){
+        settingsPicker.delegate = self
+        settingsPicker.dataSource = self
+    }
     
     private func constrainSettingsPicker(){
         view.addSubview(settingsPicker)
@@ -41,6 +76,24 @@ class SettingsVC: UIViewController {
         self.navigationItem.title = "Pick Default Category"
         
     }
+  
+    
 }
-
+extension SettingsVC: UIPickerViewDelegate, UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categoryArray.count
+        
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let book =  categoryArray[row].display_name
+        return book
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        UserDefaults.standard.set(row, forKey: "selectedCategory")
+    }
+}
 
