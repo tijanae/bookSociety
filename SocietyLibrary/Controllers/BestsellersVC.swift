@@ -198,7 +198,6 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         
         cell.bookImage.image = image
         cell.bookName.text = data.book_details[0].title
-      
         return cell
     }
     
@@ -206,14 +205,14 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         return CGSize(width: 400, height: 400)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+
         let detailVC = BookDetailVC()
         let selectedBook = bestSeller[indexPath.row]
         //               detailVC.book = selectedBook
         self.navigationController?.pushViewController(detailVC, animated: true)
         //               let selectedBook = book[indexPath.row]
         //               detailVC.book = selectedBook
-        
+
     }
 }
 
