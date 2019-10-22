@@ -9,22 +9,34 @@
 import UIKit
 
 class FavoriteVC: UIViewController {
+    
+    lazy var favoritePicker : UIPickerView = {
+        let favoritePicker = UIPickerView()
+        return favoritePicker
+    }()
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        constrainFavoritePicker()
+        
     }
+  
     
+    private func constrainFavoritePicker(){
+           view.addSubview(favoritePicker)
+           favoritePicker.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([
+               favoritePicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+               favoritePicker.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -350),
+               favoritePicker.heightAnchor.constraint(equalToConstant: 350),
+               favoritePicker.widthAnchor.constraint(equalTo: view.widthAnchor),
+           ])
+       }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setNavBarLabel(){
+        self.navigationItem.title = "Pick Default Category"
+        
     }
-    */
-
 }
