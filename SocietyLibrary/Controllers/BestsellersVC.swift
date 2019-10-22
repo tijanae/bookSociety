@@ -187,5 +187,6 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         detailVC.image = self.image
 
         self.navigationController?.pushViewController(detailVC, animated: true)
+
     }    
 }
