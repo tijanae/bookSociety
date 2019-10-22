@@ -180,5 +180,6 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         let detailVC = BookDetailVC()
         let selectedBook = bestSeller[indexPath.row]
         self.navigationController?.pushViewController(detailVC, animated: true)
+
     }    
 }
