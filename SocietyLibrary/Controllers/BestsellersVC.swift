@@ -10,6 +10,8 @@ import UIKit
 
 class BestsellersVC: UIViewController {
     
+    let image = UIImage(named: "book")
+    
     var category = String()
     
     var book = [Item]() //Imgage
@@ -26,7 +28,6 @@ class BestsellersVC: UIViewController {
     
     //Array of books
     var bestSeller = [BookElement](){
-        
         didSet{
             DispatchQueue.main.async {
                 self.booksCollectionView.reloadData()
@@ -41,7 +42,7 @@ class BestsellersVC: UIViewController {
         setUpView()
         setUpDelegates()
         constrainBooksCollectionView()
-        loadData() //Loads categories
+        loadCategory() //Loads categories
         setUpConstraints()
         loadDefaults()
     }
@@ -59,6 +60,7 @@ class BestsellersVC: UIViewController {
            }
            
        }
+
     private func setUpDelegates(){
         bookPicker.delegate = self
         bookPicker.dataSource = self
@@ -82,7 +84,8 @@ class BestsellersVC: UIViewController {
         cv.delegate = self
         return cv
     }()
-    func loadData(){
+    //loads categorys
+    func loadCategory(){
         BookCategoryAPIClient.manager.getCategory{ (result) in
             DispatchQueue.main.async {
                 switch result{
@@ -97,6 +100,23 @@ class BestsellersVC: UIViewController {
             }
         }
     }
+    //Loads books
+    private func loadBestSellers() {
+        BookImageApi.manager.getBestSellers(category: category) { (result) in
+            DispatchQueue.main.async {
+                switch result{
+                case .failure(let error):
+                    print(error)
+                case .success(let best):
+                    DispatchQueue.main.async {
+                        self.bestSeller = best
+                    }
+                    
+                }
+            }
+        }
+    }
+    
     private func constrainBooksCollectionView(){
         view.addSubview(booksCollectionView)
         booksCollectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -122,25 +142,6 @@ class BestsellersVC: UIViewController {
         constrainBooksCollectionView()
         constrainBooksPicker()
     }
-    //Loads books
-    private func loadBestSellers() {
-        BookImageApi.manager.getBestSellers(category: category) { (result) in
-            DispatchQueue.main.async {
-                switch result{
-                case .failure(let error):
-                    print(error)
-                case .success(let best):
-                    DispatchQueue.main.async {
-                        self.bestSeller = best
-                    }
-                    
-                }
-            }
-        }
-    }
-
-    
-    
 }
 extension BestsellersVC: UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -156,9 +157,7 @@ extension BestsellersVC: UIPickerViewDelegate, UIPickerViewDataSource{
         return book
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //Set categories
         category = bestBooks[row].list_name_encoded
-        //Loads books
         loadBestSellers()
     }
 }
@@ -170,6 +169,7 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell", for: indexPath) as? BestsellerBookCell else {return UICollectionViewCell()}
         let data = bestSeller[indexPath.row]
+
         
         ImageManager.manager.getImage(urlStr: data.book_image) { (result) in
             DispatchQueue.main.async {
@@ -184,17 +184,20 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         cell.bookName.text = data.title
         cell.bookText.text = data.description
         return cell
-        
     }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 200, height: 300)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         let detailVC = BookDetailVC()
         let selectedBook = bestSeller[indexPath.row]
-        self.navigationController?.pushViewController(detailVC, animated: true)
 
-    }    
-}
+        detailVC.book = selectedBook
+        detailVC.image = self.image
+
+        self.navigationController?.pushViewController(detailVC, animated: true)
+        
+    }}
+
+
+
