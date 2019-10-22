@@ -63,8 +63,10 @@ class FavoriteBookCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.contentView.backgroundColor = .white
         addSubviews()
         constrain()
+        
     }
     
     required init?(coder: NSCoder) {
