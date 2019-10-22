@@ -19,13 +19,13 @@ class BestsellersVC: UIViewController {
         didSet{
             DispatchQueue.main.async {
                 self.bookPicker.reloadAllComponents()
-
+                
             }
         }
     }
-
+    
     //Array of books
-    var bestSeller = [BestSeller](){
+    var bestSeller = [BookElement](){
         
         didSet{
             DispatchQueue.main.async {
@@ -61,7 +61,7 @@ class BestsellersVC: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.backgroundColor = .darkGray
+        cv.backgroundColor = .lightGray
         cv.register(BestsellerBookCell.self, forCellWithReuseIdentifier: "bookCell")
         cv.dataSource = self
         cv.delegate = self
@@ -76,7 +76,7 @@ class BestsellersVC: UIViewController {
                 case .success(let arr):
                     DispatchQueue.main.async {
                         self.bestBooks = arr
-
+                        
                     }
                 }
             }
@@ -109,7 +109,7 @@ class BestsellersVC: UIViewController {
     }
     //Loads books
     private func loadBestSellers() {
-        BestsellerAPIClient.manager.getBestSellers(category: category) { (result) in
+        BookImageApi.manager.getBestSellers(category: category) { (result) in
             DispatchQueue.main.async {
                 switch result{
                 case .failure(let error):
@@ -117,27 +117,13 @@ class BestsellersVC: UIViewController {
                 case .success(let best):
                     DispatchQueue.main.async {
                         self.bestSeller = best
-//                        print(best)
                     }
                     
                 }
             }
         }
     }
-    //Loads images
-    private func loadBookData(url: String){
-        BookInfoAPIClient.manager.getBookInfo(url: url){ (result) in
-            DispatchQueue.main.async {
-                switch result{
-                case .failure(let error):
-                    print(error)
-                case .success(let book):
-                    self.book = book
-                }
-            }
-        }
-        
-    }
+
     
     
 }
@@ -169,90 +155,30 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell", for: indexPath) as? BestsellerBookCell else {return UICollectionViewCell()}
         let data = bestSeller[indexPath.row]
-
-        let image = UIImage(named: "book")
         
-//        BookInfoAPIClient.manager.getBookInfo(url: data.isbns[0].isbn10){ (result) in
-//            DispatchQueue.main.async {
-//                switch result{
-//                case .failure(let error):
-//                    print(error)
-//                case .success(let book):
-//                    self.book = book
-//
-//
-//                    ImageManager.manager.getImage(urlStr: book[0].volumeInfo.imageLinks.thumbnail  ) { (result) in
-//
-//                        DispatchQueue.main.async {
-//                            switch result{
-//                            case .failure(let error):
-//                                print(error)
-//                            case .success(let image):
-//                                cell.bookImage.image = image
-//                            }
-//                        }
-//
-//                    }
-//                }
-//            }
-//        }
-        
-        cell.bookImage.image = image
-
-        cell.bookName.text = data.book_details[0].title
-        cell.bookText.text = data.book_details[0].description
-        cell.backgroundColor = .lightGray
+        ImageManager.manager.getImage(urlStr: data.book_image) { (result) in
+            DispatchQueue.main.async {
+                switch result{
+                case .failure(let error):
+                    print(error)
+                case .success(let image):
+                    cell.bookImage.image = image
+                }
+            }
+        }
+        cell.bookName.text = data.title
+        cell.bookText.text = data.description
         return cell
-
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 400, height: 400)
+        return CGSize(width: 200, height: 300)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
         let detailVC = BookDetailVC()
         let selectedBook = bestSeller[indexPath.row]
-        //               detailVC.book = selectedBook
         self.navigationController?.pushViewController(detailVC, animated: true)
-        //               let selectedBook = book[indexPath.row]
-        //               detailVC.book = selectedBook
-
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           return CGSize(width: 400, height: 250)
-       }
-     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            let detailVC = BookDetailVC()
-//            let selectedBook = book[indexPath.row]
-            //               detailVC.book = selectedBook
-            self.navigationController?.pushViewController(detailVC, animated: true)
-        }
+    }    
 }
-//        BookInfoAPIClient.manager.getBookInfo(url: data.isbns[0].isbn10){ (result) in
-//            DispatchQueue.main.async {
-//                switch result{
-//                case .failure(let error):
-//                    print(error)
-//                case .success(let book):
-//                    self.book = book
-                    
-            
-//                    ImageManager.manager.getImage(urlStr: book[0].volumeInfo.imageLinks.thumbnail  ) { (result) in
-//
-//                        DispatchQueue.main.async {
-//                            switch result{
-//                            case .failure(let error):
-//                                print(error)
-//                            case .success(let image):
-//                                cell.bookImage.image = image
-//                            }
-//                        }
-//
-//                    }
-                    
-    
-   
-   
-
-
