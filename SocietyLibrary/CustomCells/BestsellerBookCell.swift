@@ -11,51 +11,67 @@ import UIKit
 class BestsellerBookCell: UICollectionViewCell {
     lazy var bookImage: UIImageView = {
         let bookImage = UIImageView()
-        
+        bookImage.image = UIImage(named: "logo")
         return bookImage
         
     }()
     
     lazy var bookName: UILabel = {
         var bookName = UILabel()
-        
-        
+        bookName.textAlignment = .center
         return bookName
     }()
     
     lazy var bookText: UITextView = {
         let bookText = UITextView()
-        
-        
+        bookText.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
+        bookText.isEditable = false
+        bookText.sizeToFit()
+        bookText.isScrollEnabled = true
         return bookText
     }()
     
-    
-    lazy var bookStackView: UIStackView = {
-        let bookStack = UIStackView(arrangedSubviews: [bookImage, bookName, bookText])
-        bookStack.axis = .vertical
-        bookStack.alignment = .center
-        bookStack.distribution = .fill
-        bookStack.spacing = 1
-        return bookStack
-    }()
-    
-    private func constrainStackView(){
-    bookStackView.translatesAutoresizingMaskIntoConstraints = false
-          NSLayoutConstraint.activate([
-              bookStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-              bookStackView.topAnchor.constraint(equalTo:
-                contentView.safeAreaLayoutGuide.topAnchor, constant: 10),
-              bookStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//              bookStackView.heightAnchor.constraint(equalToConstant: 50),
-              bookStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-          ])
+    private func addViews(){
+        contentView.addSubview(bookImage)
+        contentView.addSubview(bookName)
+        contentView.addSubview(bookText)
+        
     }
+    private func addConstraints(){
+        constrainImageView()
+        constrainBookName()
+        constrainBookText()
+    }
+    private func constrainImageView(){
+        bookImage.translatesAutoresizingMaskIntoConstraints = false
+        [bookImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 11),
+         bookImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 44),
+         bookImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.50),
+         bookImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -44)
+            ].forEach{$0.isActive = true}
+    }
+    
+    private func constrainBookName(){
+        bookName.translatesAutoresizingMaskIntoConstraints = false
+        bookName.topAnchor.constraint(equalTo: bookImage.bottomAnchor).isActive = true
+        bookName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: CGFloat(11)).isActive = true
+        bookName.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.10).isActive = true
+        bookName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -11).isActive = true
+    }
+    private func constrainBookText(){
+        bookText.translatesAutoresizingMaskIntoConstraints = false
+        [bookText.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
+         bookText.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 11),
+         bookText.topAnchor.constraint(equalTo: bookName.bottomAnchor, constant: 0),
+         bookText.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -11)
+            ].forEach{$0.isActive = true}
+    }
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.contentView.addSubview(bookStackView)
-        constrainStackView()
+        addViews()
+        addConstraints()
     }
     
     required init?(coder: NSCoder) {
