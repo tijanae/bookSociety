@@ -10,6 +10,11 @@ import UIKit
 
 class BestsellersVC: UIViewController {
     
+    var category = String()
+    
+    var book = [Item]() //Imgage
+    
+    //Array of categories
     var bestBooks = [Category](){
         didSet{
             DispatchQueue.main.async {
@@ -18,8 +23,8 @@ class BestsellersVC: UIViewController {
             }
         }
     }
-    var category = String()
-    
+
+    //Array of books
     var bestSeller = [BestSeller](){
         
         didSet{
@@ -29,7 +34,6 @@ class BestsellersVC: UIViewController {
             
         }
     }
-    var book = [Item]()
     
     
     override func viewDidLoad() {
@@ -37,7 +41,7 @@ class BestsellersVC: UIViewController {
         setUpView()
         setUpDelegates()
         constrainBooksCollectionView()
-        loadData()
+        loadData() //Loads categories
         setUpConstraints()
     }
     private func setUpDelegates(){
@@ -103,6 +107,7 @@ class BestsellersVC: UIViewController {
         constrainBooksCollectionView()
         constrainBooksPicker()
     }
+    //Loads books
     private func loadBestSellers() {
         BestsellerAPIClient.manager.getBestSellers(category: category) { (result) in
             DispatchQueue.main.async {
@@ -112,12 +117,14 @@ class BestsellersVC: UIViewController {
                 case .success(let best):
                     DispatchQueue.main.async {
                         self.bestSeller = best
+//                        print(best)
                     }
                     
                 }
             }
         }
     }
+    //Loads images
     private func loadBookData(url: String){
         BookInfoAPIClient.manager.getBookInfo(url: url){ (result) in
             DispatchQueue.main.async {
@@ -148,9 +155,9 @@ extension BestsellersVC: UIPickerViewDelegate, UIPickerViewDataSource{
         return book
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+        //Set categories
         category = bestBooks[row].list_name_encoded
-        
+        //Loads books
         loadBestSellers()
     }
 }
@@ -162,34 +169,34 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell", for: indexPath) as? BestsellerBookCell else {return UICollectionViewCell()}
         let data = bestSeller[indexPath.row]
+        let image = UIImage(named: "book")
         
+//        BookInfoAPIClient.manager.getBookInfo(url: data.isbns[0].isbn10){ (result) in
+//            DispatchQueue.main.async {
+//                switch result{
+//                case .failure(let error):
+//                    print(error)
+//                case .success(let book):
+//                    self.book = book
+//
+//
+//                    ImageManager.manager.getImage(urlStr: book[0].volumeInfo.imageLinks.thumbnail  ) { (result) in
+//
+//                        DispatchQueue.main.async {
+//                            switch result{
+//                            case .failure(let error):
+//                                print(error)
+//                            case .success(let image):
+//                                cell.bookImage.image = image
+//                            }
+//                        }
+//
+//                    }
+//                }
+//            }
+//        }
         
-        BookInfoAPIClient.manager.getBookInfo(url: data.isbns[0].isbn10){ (result) in
-            DispatchQueue.main.async {
-                switch result{
-                case .failure(let error):
-                    print(error)
-                case .success(let book):
-                    self.book = book
-                    
-            
-                    ImageManager.manager.getImage(urlStr: book[0].volumeInfo.imageLinks.thumbnail  ) { (result) in
-                       
-                        DispatchQueue.main.async {
-                            switch result{
-                            case .failure(let error):
-                                print(error)
-                            case .success(let image):
-                                cell.bookImage.image = image
-                            }
-                        }
-                        
-                    }
-                }
-            }
-        }
-        
-        
+        cell.bookImage.image = image
         cell.bookName.text = data.book_details[0].title
       
         return cell
@@ -201,7 +208,7 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let detailVC = BookDetailVC()
-        let selectedBook = book[indexPath.row]
+        let selectedBook = bestSeller[indexPath.row]
         //               detailVC.book = selectedBook
         self.navigationController?.pushViewController(detailVC, animated: true)
         //               let selectedBook = book[indexPath.row]
