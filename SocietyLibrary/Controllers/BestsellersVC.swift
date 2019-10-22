@@ -12,10 +12,13 @@ class BestsellersVC: UIViewController {
     
     let image = UIImage(named: "book")
     
-    var category = String()
+    var category = String(){
+        didSet{
+            loadBestSellers()
+        }
+    }
     
-    var book = [Item]() //Imgage
-    
+   
     //Array of categories
     var bestBooks = [Category](){
         didSet{
@@ -44,23 +47,29 @@ class BestsellersVC: UIViewController {
         constrainBooksCollectionView()
         loadCategory() //Loads categories
         setUpConstraints()
-        loadDefaults()
+            loadDefaults()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+       // loadDefaults()
         loadDefaults()
         self.booksCollectionView.reloadData()
     }
     
     private func loadDefaults(){
-           if let row = UserDefaults.standard.object(forKey: "selectedCategory"){
-               self.bookPicker.selectRow(row as! Int, inComponent: 0, animated: true)
-           }else{
-               self.bookPicker.selectRow(0, inComponent: 0, animated: true)
-           }
-           
-       }
-
+        if let row = UserDefaults.standard.object(forKey: "selectedCategory"){
+            self.bookPicker.selectRow(row as! Int, inComponent: 0, animated: true)
+            if let name = UserDefaults.standard.object(forKey: "selectedName"){
+                self.category = name as! String
+            }
+        }else{
+            self.bookPicker.selectRow(0, inComponent: 0, animated: true)
+        }
+        
+        loadCategory()
+        
+    }
+    
     private func setUpDelegates(){
         bookPicker.delegate = self
         bookPicker.dataSource = self
@@ -86,6 +95,7 @@ class BestsellersVC: UIViewController {
     }()
     //loads categorys
     func loadCategory(){
+     
         BookCategoryAPIClient.manager.getCategory{ (result) in
             DispatchQueue.main.async {
                 switch result{
@@ -94,10 +104,12 @@ class BestsellersVC: UIViewController {
                 case .success(let arr):
                     DispatchQueue.main.async {
                         self.bestBooks = arr
+                        self.loadDefaults()
                         
                     }
                 }
-            }
+            
+        }
         }
     }
     //Loads books
@@ -158,7 +170,6 @@ extension BestsellersVC: UIPickerViewDelegate, UIPickerViewDataSource{
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         category = bestBooks[row].list_name_encoded
-        loadBestSellers()
     }
 }
 extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -169,7 +180,7 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell", for: indexPath) as? BestsellerBookCell else {return UICollectionViewCell()}
         let data = bestSeller[indexPath.row]
-
+        
         
         ImageManager.manager.getImage(urlStr: data.book_image) { (result) in
             DispatchQueue.main.async {
@@ -191,20 +202,9 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = BookDetailVC()
         let selectedBook = bestSeller[indexPath.row]
-
         detailVC.book = selectedBook
         
-//        ImageManager.manager.getImage(urlStr: selectedBook.book_image) { (result) in
-//            DispatchQueue.main.async {
-//                switch result {
-//                case .failure(let error):
-//                    print(error)
-//                case .success(let image):
-//                    detailVC.image = image
-//            }
-//        }
-//        }
-            
+        
         self.navigationController?.pushViewController(detailVC, animated: true)
         
     }}
