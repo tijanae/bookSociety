@@ -21,12 +21,13 @@ class FavoriteVC: UIViewController {
     
     lazy var favedBooksCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         let faveCV = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
             
 //            UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         faveCV.backgroundColor = .purple
         faveCV.register(FavoriteBookCell.self, forCellWithReuseIdentifier: "faveCell")
+        
 //        faveCV.dataSource = self
 //        faveCV.delegate = self
         return faveCV

@@ -184,9 +184,32 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         let selectedBook = bestSeller[indexPath.row]
 
         detailVC.book = selectedBook
-        detailVC.image = self.image
-
+        
+//        ImageManager.manager.getImage(urlStr: selectedBook.book_image) { (result) in
+//            DispatchQueue.main.async {
+//                switch result {
+//                case .failure(let error):
+//                    print(error)
+//                case .success(let image):
+//                    detailVC.image = image
+//            }
+//        }
+//        }
+            
         self.navigationController?.pushViewController(detailVC, animated: true)
 
     }    
 }
+/*
+func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    let detailVC = BookDetailVC()
+    let selectedBook = bestSeller[indexPath.row]
+        detailVC.book = selectedBook
+    detailVC.image = self.image
+    self.navigationController?.pushViewController(detailVC, animated: true)
+    //               let selectedBook = book[indexPath.row]
+    //               detailVC.book = selectedBook
+
+}
+*/
