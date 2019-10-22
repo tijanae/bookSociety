@@ -11,13 +11,12 @@ import UIKit
 
 class BookDetailVC: UIViewController {
     
-    var book: BestSeller!
+    var book: BookElement!
     
-    var image: UIImage!
+//    var image: UIImage!
     
     lazy var detailImageView : UIImageView = {
         let detailImageView = UIImageView()
-        detailImageView.image = self.image
         return detailImageView
     }()
     
@@ -26,7 +25,7 @@ class BookDetailVC: UIViewController {
         detailTextView.textColor = .black
         detailTextView.textAlignment = .left
         detailTextView.font = .systemFont(ofSize: 18)
-        detailTextView.text = "gejfbnswfjbsjfbsjhfbsjfbsjfbsjfbsjfbsjfbsfsfsf"
+        detailTextView.text = book.description
         return detailTextView
     }()
     
@@ -34,7 +33,9 @@ class BookDetailVC: UIViewController {
         let imageLabel = UILabel()
         imageLabel.textColor = .black
         imageLabel.textAlignment = .center
-        imageLabel.text = self.book.book_details[0].author
+        imageLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        imageLabel.textAlignment = .left
+        imageLabel.text = self.book.author
         return imageLabel
     }()
     
@@ -61,6 +62,7 @@ class BookDetailVC: UIViewController {
         addSubviews()
         constrainSubviews()
         setNavBarLabel()
+        getImage()
 
         
     }
@@ -71,9 +73,7 @@ class BookDetailVC: UIViewController {
     
     func getDataFromImage() -> Data? {
         
-        guard let image = detailImageView.image else {
-        return nil
-        }
+        guard let image = detailImageView.image else { return nil }
         let bookImageAsData = image.jpegData(compressionQuality: 1.0)
 
         return bookImageAsData
@@ -85,7 +85,7 @@ class BookDetailVC: UIViewController {
     @objc private func addFavorite(sender:UIBarButtonItem!){
         print("Favorite")
         if imageName == "" {
-            let savedData = FavoriteBooks(imageName: imageName, imageData: getDataFromImage()!, summary: book.book_details[0].description, amazonURL: book.amazon_product_url, weeksOn: book.weeks_on_list)
+            let savedData = FavoriteBooks(imageName: imageName, imageData: getDataFromImage()!, summary: book.description, amazonURL: book.buy_links[0].url, weeksOn: book.weeks_on_list)
             DispatchQueue.global(qos: .utility).async {
                 try? BookPersistenceManager.manager.saveFavorites(bookData: savedData)
                 print("stuff happened")
@@ -97,6 +97,19 @@ class BookDetailVC: UIViewController {
     private func setNavBarLabel(){
         self.navigationItem.title = "Book Title"
         
+    }
+    
+    private func getImage() {
+        ImageManager.manager.getImage(urlStr: book.book_image) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let image):
+                DispatchQueue.main.async {
+                self.detailImageView.image = image
+                }
+            }
+        }
     }
     
     private func addSubviews(){
@@ -117,10 +130,10 @@ class BookDetailVC: UIViewController {
     
     private func constrainImageView(){
         detailImageView.translatesAutoresizingMaskIntoConstraints = false
-        [detailImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        [detailImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
          detailImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 110),
-         detailImageView.heightAnchor.constraint(equalToConstant: 200),
-         detailTextView.widthAnchor.constraint(equalToConstant: 100)
+         detailImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.40),
+         detailImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.60)
             ].forEach{$0.isActive = true}
         
     }
@@ -142,8 +155,8 @@ class BookDetailVC: UIViewController {
     }
     private func constrainAmazonButton(){
         amazonButton.translatesAutoresizingMaskIntoConstraints = false
-        [amazonButton.leadingAnchor.constraint(equalTo: detailImageView.trailingAnchor, constant: 20),
-         amazonButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 110),
+        [amazonButton.leadingAnchor.constraint(equalTo: detailImageView.trailingAnchor, constant: 10),
+         amazonButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 410),
          amazonButton.heightAnchor.constraint(equalToConstant: 50),
          amazonButton.widthAnchor.constraint(equalToConstant: 80)
             ].forEach{$0.isActive = true}
