@@ -15,11 +15,11 @@ class FavoriteVC: UIViewController {
         return favoritePicker
     }()
     
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         constrainFavoritePicker()
+        setNavBarLabel()
         
     }
   
