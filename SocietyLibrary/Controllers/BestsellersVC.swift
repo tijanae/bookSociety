@@ -10,6 +10,8 @@ import UIKit
 
 class BestsellersVC: UIViewController {
     
+    let image = UIImage(named: "book")
+    
     var category = String()
     
     var book = [Item]() //Imgage
@@ -42,8 +44,23 @@ class BestsellersVC: UIViewController {
         constrainBooksCollectionView()
         loadCategory() //Loads categories
         setUpConstraints()
+        loadDefaults()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        loadDefaults()
+        self.booksCollectionView.reloadData()
+    }
+    
+    private func loadDefaults(){
+           if let row = UserDefaults.standard.object(forKey: "selectedCategory"){
+               self.bookPicker.selectRow(row as! Int, inComponent: 0, animated: true)
+           }else{
+               self.bookPicker.selectRow(0, inComponent: 0, animated: true)
+           }
+           
+       }
+
     private func setUpDelegates(){
         bookPicker.delegate = self
         bookPicker.dataSource = self
@@ -106,7 +123,7 @@ class BestsellersVC: UIViewController {
         NSLayoutConstraint.activate([
             booksCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             booksCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-            booksCollectionView.heightAnchor.constraint(equalToConstant: 250),
+            booksCollectionView.heightAnchor.constraint(equalToConstant: 300),
             booksCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor),
         ])
     }
@@ -115,7 +132,7 @@ class BestsellersVC: UIViewController {
         bookPicker.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             bookPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            bookPicker.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -150),
+            bookPicker.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
             bookPicker.heightAnchor.constraint(equalToConstant: 250),
             bookPicker.widthAnchor.constraint(equalTo: view.widthAnchor),
         ])
@@ -152,6 +169,7 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell", for: indexPath) as? BestsellerBookCell else {return UICollectionViewCell()}
         let data = bestSeller[indexPath.row]
+
         
         ImageManager.manager.getImage(urlStr: data.book_image) { (result) in
             DispatchQueue.main.async {
@@ -173,9 +191,24 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = BookDetailVC()
         let selectedBook = bestSeller[indexPath.row]
+
+        detailVC.book = selectedBook
+        
+//        ImageManager.manager.getImage(urlStr: selectedBook.book_image) { (result) in
+//            DispatchQueue.main.async {
+//                switch result {
+//                case .failure(let error):
+//                    print(error)
+//                case .success(let image):
+//                    detailVC.image = image
+//            }
+//        }
+//        }
+            
         self.navigationController?.pushViewController(detailVC, animated: true)
         
     }}
+
 
 
 
