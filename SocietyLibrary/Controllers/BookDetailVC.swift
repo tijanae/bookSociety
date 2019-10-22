@@ -13,7 +13,7 @@ class BookDetailVC: UIViewController {
     
     var book: BookElement!
     
-
+    
     lazy var detailImageView : UIImageView = {
         let detailImageView = UIImageView()
         return detailImageView
@@ -46,11 +46,11 @@ class BookDetailVC: UIViewController {
         amazonButton.addTarget(self, action: #selector(amazonButtonPressed), for: .touchUpInside)
         return amazonButton
     }()
-
-
+    
+    
     lazy var faveButton: UIBarButtonItem = {
         let saveButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.bookmarks, target: self, action: #selector(addFavorite(sender:)))
-
+        
         return saveButton
     }()
     
@@ -64,24 +64,26 @@ class BookDetailVC: UIViewController {
         constrainSubviews()
         setNavBarLabel()
         getImage()
-  
+        
     }
     
     @objc private func amazonButtonPressed(){
-        print("hi")
+        if let url = URL(string:book.buy_links[0].url) {
+            UIApplication.shared.open(url , options: [:], completionHandler: nil)
+        }
     }
     
     func getDataFromImage() -> Data? {
         
         guard let image = detailImageView.image else { return nil }
         let bookImageAsData = image.jpegData(compressionQuality: 1.0)
-
+        
         return bookImageAsData
     }
     
     
     var imageName = ""
-   @objc private func addFavorite(sender:UIBarButtonItem!){
+    @objc private func addFavorite(sender:UIBarButtonItem!){
         print("Favorite")
         if imageName == "" {
             let savedData = FavoriteBooks(imageName: imageName, imageData: getDataFromImage()!, summary: book.description, amazonURL: book.buy_links[0].url, weeksOn: book.weeks_on_list)
@@ -92,6 +94,9 @@ class BookDetailVC: UIViewController {
         }
         print("ello poppet!")
     }
+    
+    
+    
     
     private func setNavBarLabel(){
         self.navigationItem.title = "Book Title"
@@ -105,10 +110,9 @@ class BookDetailVC: UIViewController {
                 print(error)
             case .success(let image):
                 DispatchQueue.main.async {
-
+                    
                     self.detailImageView.image = image
-
-
+                    
                 }
             }
         }
@@ -120,7 +124,6 @@ class BookDetailVC: UIViewController {
         view.addSubview(imageLabel)
         view.addSubview(amazonButton)
         navigationItem.rightBarButtonItem = faveButton
-
     }
     private func constrainSubviews(){
         constrainImageView()
