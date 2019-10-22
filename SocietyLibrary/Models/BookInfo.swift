@@ -22,7 +22,6 @@ struct BookInfo: Codable {
 }
 
 struct Item: Codable {
-    
     let volumeInfo: VolumeInfo
    
 }
