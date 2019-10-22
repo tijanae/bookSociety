@@ -35,6 +35,8 @@
 		4E0C342F235A58AC00B19CC8 /* BookInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E0C342E235A58AC00B19CC8 /* BookInfo.json */; };
 		4E0C3431235A599000B19CC8 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0C3430235A599000B19CC8 /* Protocols.swift */; };
 		4E0C3437235A6BFA00B19CC8 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0C3436235A6BFA00B19CC8 /* Secrets.swift */; };
+		50D7C9BE235F5FAC00B3C3B8 /* NYTImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7C9BD235F5FAC00B3C3B8 /* NYTImage.swift */; };
+		50D7C9C0235F615E00B3C3B8 /* BookImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7C9BF235F615E00B3C3B8 /* BookImageAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		4E0C342E235A58AC00B19CC8 /* BookInfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BookInfo.json; sourceTree = "<group>"; };
 		4E0C3430235A599000B19CC8 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		4E0C3436235A6BFA00B19CC8 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		50D7C9BD235F5FAC00B3C3B8 /* NYTImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTImage.swift; sourceTree = "<group>"; };
+		50D7C9BF235F615E00B3C3B8 /* BookImageAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookImageAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +177,7 @@
 				4E0C3409235A552C00B19CC8 /* CategoryBestseller.swift */,
 				4E0C3424235A580C00B19CC8 /* FavoritesModel.swift */,
 				4E0C3430235A599000B19CC8 /* Protocols.swift */,
+				50D7C9BD235F5FAC00B3C3B8 /* NYTImage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 				4E0C3419235A570D00B19CC8 /* BookInfoApiHelper.swift */,
 				4E0C341B235A572A00B19CC8 /* ImageHelper.swift */,
 				4E0C3420235A577000B19CC8 /* AppError.swift */,
+				50D7C9BF235F615E00B3C3B8 /* BookImageAPI.swift */,
 			);
 			path = NetworkHelpers;
 			sourceTree = "<group>";
@@ -328,6 +334,7 @@
 				4E0C3421235A577000B19CC8 /* AppError.swift in Sources */,
 				4E0C3429235A582D00B19CC8 /* UserDefaults.swift in Sources */,
 				4E0C340A235A552C00B19CC8 /* CategoryBestseller.swift in Sources */,
+				50D7C9C0235F615E00B3C3B8 /* BookImageAPI.swift in Sources */,
 				4E0C3418235A56FD00B19CC8 /* BestsellerApiHelper.swift in Sources */,
 				4E0C3423235A57B200B19CC8 /* PersistenceHelper.swift in Sources */,
 				4E0C33D9235A52B400B19CC8 /* AppDelegate.swift in Sources */,
@@ -343,6 +350,7 @@
 				4E0C3437235A6BFA00B19CC8 /* Secrets.swift in Sources */,
 				4E0C3427235A581F00B19CC8 /* BookPersistenceManager.swift in Sources */,
 				4E0C341C235A572A00B19CC8 /* ImageHelper.swift in Sources */,
+				50D7C9BE235F5FAC00B3C3B8 /* NYTImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
