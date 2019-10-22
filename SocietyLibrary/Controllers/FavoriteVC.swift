@@ -44,6 +44,7 @@ class FavoriteVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
     private func setDelegates() {
         favedBooksCollectionView.delegate = self
         favedBooksCollectionView.dataSource = self
@@ -86,8 +87,12 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let thisCell  = collectionView.dequeueReusableCell(withReuseIdentifier: "faveCell", for: indexPath) as? FavoriteBookCell else { return UICollectionViewCell()}
         let faveCell =  favedBooks[indexPath.row]
+        let image = UIImage(data: faveCell.imageData)
         thisCell.weeksAtTop.text = "\(faveCell.weeksOn) week(s) on Bestseller"
         thisCell.bookSummary.text = faveCell.summary.description
+        thisCell.faveBookImage.image = image
+        thisCell.delegate = self
+        thisCell.actionButton.tag = indexPath.row
         return thisCell
     }
     
@@ -96,6 +101,32 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     
+}
+
+extension FavoriteVC: BookCellDelegate {
+    
+    func showActionSheet(tag: Int) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let destroyAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            try? BookPersistenceManager.manager.delete(element: self.favedBooks, atIndex: tag)
+            self.loadData()
+    
+    }
+        let buyFromAmazonAction = UIAlertAction(title: "Buy From Amazon", style: .destructive){(action) in
+            if let url = URL(string: self.favedBooks[tag].amazonURL) {
+                UIApplication.shared.open(url , options: [:], completionHandler: nil)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(destroyAction)
+        alert.addAction(buyFromAmazonAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true)
+    }
+    
+    
+    
+
 }
 
 

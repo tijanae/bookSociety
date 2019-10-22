@@ -23,6 +23,10 @@ struct BookPersistenceManager {
     func getFavorites() throws -> [FavoriteBooks] {
         return try persistenceHelper.getObjects()
     }
+    
+    func delete(element: [FavoriteBooks], atIndex: Int) throws {
+        try persistenceHelper.delete(elements: element, index: atIndex)
+    }
 }
 
 
