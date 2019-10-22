@@ -32,7 +32,10 @@ class SettingsVC: UIViewController {
         view.backgroundColor = .white
         loadCategories()
         setUpDelegates()
-        loadDefaults()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+         loadDefaults()
     }
     
     private func loadDefaults(){
@@ -94,6 +97,7 @@ extension SettingsVC: UIPickerViewDelegate, UIPickerViewDataSource{
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         UserDefaults.standard.set(row, forKey: "selectedCategory")
+        UserDefaults.standard.set(categoryArray[row].list_name_encoded, forKey: "selectedName")
     }
 }
 
