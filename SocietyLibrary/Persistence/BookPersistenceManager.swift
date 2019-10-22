@@ -25,17 +25,4 @@ struct BookPersistenceManager {
     }
 }
 
-/*
- private init() {}
-    static let manager = CityImagePersistenceManager()
-    
-    private let persistenceHelper = PersistenceHelper<SavedCityImage>(fileName: "cityImages.plist")
-    
-    func savePhoto(photo: SavedCityImage) throws {
-        try persistenceHelper.save(newElement: photo)
-    }
-    
-    func getPhoto() throws -> [SavedCityImage] {
-        return try persistenceHelper.getObjects()
-    }
- */
+
