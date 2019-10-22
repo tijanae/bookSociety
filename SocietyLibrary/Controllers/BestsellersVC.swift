@@ -43,7 +43,22 @@ class BestsellersVC: UIViewController {
         constrainBooksCollectionView()
         loadData() //Loads categories
         setUpConstraints()
+        loadDefaults()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadDefaults()
+        self.booksCollectionView.reloadData()
+    }
+    
+    private func loadDefaults(){
+           if let row = UserDefaults.standard.object(forKey: "selectedCategory"){
+               self.bookPicker.selectRow(row as! Int, inComponent: 0, animated: true)
+           }else{
+               self.bookPicker.selectRow(0, inComponent: 0, animated: true)
+           }
+           
+       }
     private func setUpDelegates(){
         bookPicker.delegate = self
         bookPicker.dataSource = self
@@ -88,7 +103,7 @@ class BestsellersVC: UIViewController {
         NSLayoutConstraint.activate([
             booksCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             booksCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-            booksCollectionView.heightAnchor.constraint(equalToConstant: 250),
+            booksCollectionView.heightAnchor.constraint(equalToConstant: 300),
             booksCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor),
         ])
     }
@@ -97,7 +112,7 @@ class BestsellersVC: UIViewController {
         bookPicker.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             bookPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            bookPicker.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -150),
+            bookPicker.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
             bookPicker.heightAnchor.constraint(equalToConstant: 250),
             bookPicker.widthAnchor.constraint(equalTo: view.widthAnchor),
         ])
