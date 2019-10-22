@@ -25,10 +25,10 @@ class BestsellerBookCell: UICollectionViewCell {
     
     lazy var bookText: UITextView = {
         let bookText = UITextView()
-//        bookText.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
         bookText.isEditable = false
         bookText.sizeToFit()
         bookText.isScrollEnabled = true
+        bookText.font = UIFont.systemFont(ofSize: 15)
         return bookText
     }()
     
