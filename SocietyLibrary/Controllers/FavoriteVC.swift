@@ -29,9 +29,9 @@ class FavoriteVC: UIViewController {
            favoritePicker.translatesAutoresizingMaskIntoConstraints = false
            NSLayoutConstraint.activate([
                favoritePicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-               favoritePicker.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -350),
-               favoritePicker.heightAnchor.constraint(equalToConstant: 350),
-               favoritePicker.widthAnchor.constraint(equalTo: view.widthAnchor),
+               favoritePicker.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+//               favoritePicker.heightAnchor.constraint(equalToConstant: 250),
+//               favoritePicker.widthAnchor.constraint(equalTo: view.widthAnchor),
            ])
        }
 
