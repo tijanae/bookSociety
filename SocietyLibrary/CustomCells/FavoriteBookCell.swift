@@ -66,3 +66,34 @@ class FavoriteBookCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+/*
+func showActionSheet(tag: Int) {
+       let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+       let destroyAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+           try? EntryPersistenceHelper.manager.delete(element: self.photoJournal, atIndex: tag)
+           self.loadJournal()
+       }
+       let editAction = UIAlertAction(title: "Edit", style: .default) { (action) in
+           let alert = UIAlertController(title: "", message: "I DO NOT KNOW HOW TO EDIT", preferredStyle: .alert)
+           let action = UIAlertAction(title: "OK", style: .destructive, handler: nil)
+           alert.addAction(action)
+           self.present(alert, animated: true)
+       }
+       let shareAction = UIAlertAction(title: "Share", style: .default) { (action) in
+           let alert = UIAlertController(title: "", message: "I DO NOT KNOW HOW TO SHARE", preferredStyle: .alert)
+           let action = UIAlertAction(title: "OK", style: .destructive, handler: nil)
+           alert.addAction(action)
+           self.present(alert, animated: true)
+       }
+       let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+       }
+       alert.addAction(destroyAction)
+       alert.addAction(editAction)
+       alert.addAction(shareAction)
+       alert.addAction(cancelAction)
+       self.present(alert, animated: true) {
+       }
+   }
+}
+*/
