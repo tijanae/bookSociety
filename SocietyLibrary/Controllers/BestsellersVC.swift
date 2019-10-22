@@ -84,22 +84,22 @@ class BestsellersVC: UIViewController {
         }
     }
     //Loads books
-     private func loadBestSellers() {
-         BookImageApi.manager.getBestSellers(category: category) { (result) in
-             DispatchQueue.main.async {
-                 switch result{
-                 case .failure(let error):
-                     print(error)
-                 case .success(let best):
-                     DispatchQueue.main.async {
-                         self.bestSeller = best
-                     }
-                     
-                 }
-             }
-         }
-     }
-     
+    private func loadBestSellers() {
+        BookImageApi.manager.getBestSellers(category: category) { (result) in
+            DispatchQueue.main.async {
+                switch result{
+                case .failure(let error):
+                    print(error)
+                case .success(let best):
+                    DispatchQueue.main.async {
+                        self.bestSeller = best
+                    }
+                    
+                }
+            }
+        }
+    }
+    
     private func constrainBooksCollectionView(){
         view.addSubview(booksCollectionView)
         booksCollectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -174,10 +174,8 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         let detailVC = BookDetailVC()
         let selectedBook = bestSeller[indexPath.row]
         self.navigationController?.pushViewController(detailVC, animated: true)
-<<<<<<< HEAD
-    }
-=======
+        
+    }}
 
-    }    
->>>>>>> a7fa66cef4930d35efffa324a856fa28c9d3078d
-}
+
+
