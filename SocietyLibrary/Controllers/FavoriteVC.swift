@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class FavoriteVC: UIViewController {
     
     var favedBooks = [FavoriteBooks]() {
@@ -89,5 +90,6 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     
     
 }
+
 
 

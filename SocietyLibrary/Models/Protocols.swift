@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+protocol BookCellDelegate: AnyObject {
+    func showActionSheet(tag: Int)
+}
+
+
+protocol SettingsDelegate: AnyObject {
+  
+    
+}

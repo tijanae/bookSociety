@@ -9,22 +9,38 @@
 import UIKit
 
 class SettingsVC: UIViewController {
-
+    
+    
+    lazy var settingsPicker : UIPickerView = {
+        let settingsPicker = UIPickerView()
+        settingsPicker.backgroundColor = .lightGray
+        return settingsPicker
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        constrainSettingsPicker()
+        setNavBarLabel()
+        view.backgroundColor = .white
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    private func constrainSettingsPicker(){
+        view.addSubview(settingsPicker)
+        settingsPicker.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            settingsPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            settingsPicker.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                           settingsPicker.heightAnchor.constraint(equalToConstant: 250),
+                           settingsPicker.widthAnchor.constraint(equalTo: view.widthAnchor),
+        ])
     }
-    */
-
+    
+    private func setNavBarLabel(){
+        self.navigationItem.title = "Pick Default Category"
+        
+    }
 }
+
+
