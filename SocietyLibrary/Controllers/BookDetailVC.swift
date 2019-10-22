@@ -11,11 +11,13 @@ import UIKit
 
 class BookDetailVC: UIViewController {
     
-    var book: Item!
+    var book: BestSeller!
+    
+    var image: UIImage!
     
     lazy var detailImageView : UIImageView = {
         let detailImageView = UIImageView()
-        detailImageView.image = UIImage(named: "happiness")
+        detailImageView.image = self.image
         return detailImageView
     }()
     
@@ -32,7 +34,7 @@ class BookDetailVC: UIViewController {
         let imageLabel = UILabel()
         imageLabel.textColor = .black
         imageLabel.textAlignment = .center
-        imageLabel.text = "Text goes here"
+        imageLabel.text = self.book.book_details[0].author
         return imageLabel
     }()
     
@@ -45,12 +47,18 @@ class BookDetailVC: UIViewController {
         return amazonButton
     }()
 
+    lazy var faveButton: UIBarButtonItem = {
+        let saveButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.bookmarks, target: self, action: #selector(addFavorite(sender:)))
+
+        return saveButton
+    }()
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white 
-       addSubviews()
+        addSubviews()
         constrainSubviews()
         setNavBarLabel()
 
@@ -61,8 +69,29 @@ class BookDetailVC: UIViewController {
         print("hi")
     }
     
+    func getDataFromImage() -> Data? {
+        
+        guard let image = detailImageView.image else {
+        return nil
+        }
+        let bookImageAsData = image.jpegData(compressionQuality: 1.0)
+
+        return bookImageAsData
+    }
+    
+    
+    var imageName = ""
+    
     @objc private func addFavorite(sender:UIBarButtonItem!){
         print("Favorite")
+        if imageName == "" {
+            let savedData = FavoriteBooks(imageName: imageName, imageData: getDataFromImage()!, summary: book.book_details[0].description, amazonURL: book.amazon_product_url, weeksOn: book.weeks_on_list)
+            DispatchQueue.global(qos: .utility).async {
+                try? BookPersistenceManager.manager.saveFavorites(bookData: savedData)
+                print("stuff happened")
+            }
+        }
+        print("ello poppet!")
     }
     
     private func setNavBarLabel(){
@@ -71,11 +100,12 @@ class BookDetailVC: UIViewController {
     }
     
     private func addSubviews(){
-         view.addSubview(detailImageView)
+        view.addSubview(detailImageView)
         view.addSubview(detailTextView)
         view.addSubview(imageLabel)
         view.addSubview(amazonButton)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(addFavorite(sender:)))
+        navigationItem.rightBarButtonItem = faveButton
+            
     }
     private func constrainSubviews(){
         constrainImageView()
@@ -90,7 +120,7 @@ class BookDetailVC: UIViewController {
         [detailImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
          detailImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 110),
          detailImageView.heightAnchor.constraint(equalToConstant: 200),
-         detailTextView.widthAnchor.constraint(equalToConstant: 150)
+         detailTextView.widthAnchor.constraint(equalToConstant: 100)
             ].forEach{$0.isActive = true}
         
     }
@@ -115,7 +145,7 @@ class BookDetailVC: UIViewController {
         [amazonButton.leadingAnchor.constraint(equalTo: detailImageView.trailingAnchor, constant: 20),
          amazonButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 110),
          amazonButton.heightAnchor.constraint(equalToConstant: 50),
-         amazonButton.widthAnchor.constraint(equalToConstant: 60)
+         amazonButton.widthAnchor.constraint(equalToConstant: 80)
             ].forEach{$0.isActive = true}
     }
     

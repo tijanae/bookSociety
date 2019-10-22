@@ -29,36 +29,41 @@ class FavoriteBookCell: UICollectionViewCell {
     
 //    lazy var externalURL:
     /*
-     let imageName: String
-     let imageData: Data
-     let summary: String
      let amazonURL: String
-    
      */
     
-    lazy var favedStackView: UIStackView = {
-        let favedStack = UIStackView(arrangedSubviews: [faveBookImage, weeksAtTop, bookSummary])
-        favedStack.axis = .vertical
-        favedStack.alignment = .center
-        favedStack.distribution = .fillProportionally
-        favedStack.spacing = 5
-        return favedStack
-    }()
+//    lazy var favedStackView: UIStackView = {
+//        let favedStack = UIStackView(arrangedSubviews: [faveBookImage, weeksAtTop, bookSummary])
+//        favedStack.axis = .vertical
+//        favedStack.alignment = .center
+//        favedStack.distribution = .fillProportionally
+//        favedStack.spacing = 5
+//        return favedStack
+//    }()
+    
+    func addSubviews() {
+        addSubview(faveBookImage)
+        addSubview(weeksAtTop)
+        addSubview(bookSummary)
+      
+    }
     
     
     func constrain() {
-        favedStackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            favedStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            favedStackView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 10),
-            favedStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            favedStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor)
-        ])
+        
+        faveBookImage.translatesAutoresizingMaskIntoConstraints = false
+        [faveBookImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 50), faveBookImage.bottomAnchor.constraint(equalTo: weeksAtTop.topAnchor, constant: -50), faveBookImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 50), faveBookImage.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -50)].forEach{ $0.isActive = true }
+        
+       weeksAtTop.translatesAutoresizingMaskIntoConstraints = false
+       [weeksAtTop.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor), weeksAtTop.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor)].forEach{ $0.isActive = true }
+        
+        bookSummary.translatesAutoresizingMaskIntoConstraints = false
+        [bookSummary.topAnchor.constraint(equalTo: weeksAtTop.bottomAnchor), bookSummary.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor)].forEach{ $0.isActive = true }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.contentView.addSubview(favedStackView)
+        addSubviews()
         constrain()
     }
     

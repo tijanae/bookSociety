@@ -10,6 +10,8 @@ import UIKit
 
 class BestsellersVC: UIViewController {
     
+    let image = UIImage(named: "book")
+    
     var category = String()
     
     var book = [Item]() //Imgage
@@ -169,7 +171,7 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell", for: indexPath) as? BestsellerBookCell else {return UICollectionViewCell()}
         let data = bestSeller[indexPath.row]
-        let image = UIImage(named: "book")
+//        let image = UIImage(named: "book")
         
 //        BookInfoAPIClient.manager.getBookInfo(url: data.isbns[0].isbn10){ (result) in
 //            DispatchQueue.main.async {
@@ -208,7 +210,8 @@ extension BestsellersVC: UICollectionViewDelegate, UICollectionViewDataSource, U
 
         let detailVC = BookDetailVC()
         let selectedBook = bestSeller[indexPath.row]
-        //               detailVC.book = selectedBook
+            detailVC.book = selectedBook
+        detailVC.image = self.image
         self.navigationController?.pushViewController(detailVC, animated: true)
         //               let selectedBook = book[indexPath.row]
         //               detailVC.book = selectedBook

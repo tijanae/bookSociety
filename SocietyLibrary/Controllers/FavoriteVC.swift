@@ -21,7 +21,9 @@ class FavoriteVC: UIViewController {
     lazy var favedBooksCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        let faveCV = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        let faveCV = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
+            
+//            UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         faveCV.backgroundColor = .purple
         faveCV.register(FavoriteBookCell.self, forCellWithReuseIdentifier: "faveCell")
 //        faveCV.dataSource = self
@@ -64,8 +66,8 @@ class FavoriteVC: UIViewController {
         favedBooksCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
         favedBooksCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        favedBooksCollectionView.widthAnchor.constraint(equalToConstant: 400 ),
 //        favedBooksCollectionView.heightAnchor.constraint(equalToConstant: 250),
-        favedBooksCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor),
         favedBooksCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
         favedBooksCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
@@ -82,9 +84,13 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let thisCell  = collectionView.dequeueReusableCell(withReuseIdentifier: "faveCell", for: indexPath) as? FavoriteBookCell else { return UICollectionViewCell()}
         let faveCell =  favedBooks[indexPath.row]
-        thisCell.weeksAtTop.text = "\(faveCell.weeksOn) weeks on Bestseller"
-        thisCell.bookSummary.text = faveCell.summary
+        thisCell.weeksAtTop.text = "\(faveCell.weeksOn) week(s) on Bestseller"
+        thisCell.bookSummary.text = faveCell.summary.description
         return thisCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 400, height: 250)
     }
     
     
