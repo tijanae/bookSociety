@@ -17,7 +17,7 @@ class BestsellersVC: UIViewController {
             loadBestSellers()
         }
     }
-    let a = ""
+    let a = "   "
    
     //Array of categories
     var bestBooks = [Category](){
